@@ -46,11 +46,9 @@ public class EmpresaController {
         return (Empresa) this.repositorio.findByCnpj(cnpj);
     }
 
-    public void atualizarTabela(JTable grd) {
-        List<Object> lst = repositorio.findAll();
-
-        TMEmpresa tmEmpresa = new TMEmpresa(lst);
-        grd.setModel(tmEmpresa);
+    public void atualizarTabela(JTable grd) 
+    {
+        Util.jTableShow(grd, new TMEmpresa(repositorio.findAll()), null);
     }
 
     public void excluirEmpresa(Empresa empresa) {

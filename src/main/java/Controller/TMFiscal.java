@@ -41,13 +41,16 @@ class TMFiscal extends AbstractTableModel {
         switch (column) {
             case COL_ID:
                 return "ID";
+            
             case COL_NOME:
                 return "Nome";
 
             case COL_IDADE:
                 return "Idade";
+            
             case COL_SEXO:
                 return "Sexo";
+            
             case COL_CPF:
                 return "Cpf";
 
