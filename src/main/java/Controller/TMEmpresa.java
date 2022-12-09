@@ -14,12 +14,13 @@ import model.Empresa;
  */
 class TMEmpresa extends AbstractTableModel {
 
-    private List<Object> lista;
+    private List<Empresa> lista;
 
-    private final int COL_NOME = 0;
-    private final int COL_CNPJ = 1;
+    private final int COL_ID = 0;
+    private final int COL_NOME = 1;
+    private final int COL_CNPJ = 2;
 
-    public TMEmpresa(List<Object> lstEmpresa) {
+    public TMEmpresa(List<Empresa> lstEmpresa) {
         this.lista = lstEmpresa;
     }
 
@@ -30,12 +31,15 @@ class TMEmpresa extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
     @Override
     public String getColumnName(int column) {
         switch (column) {
+            case COL_ID:
+                return "ID";
+            
             case COL_NOME:
                 return "Nome";
 
@@ -60,8 +64,13 @@ class TMEmpresa extends AbstractTableModel {
             switch (columnIndex) {
                 case -1:
                     return aux;
+                
+                case COL_ID:
+                    return aux.getId();
+                
                 case COL_NOME:
                     return aux.getNome();
+
                 case COL_CNPJ:
                     return aux.getCnpj();
                 default:

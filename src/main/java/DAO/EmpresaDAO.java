@@ -4,6 +4,8 @@
  */
 package DAO;
 
+import Exceptions.FiscalException;
+import Factory.Database;
 import Factory.Persistencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,120 +13,85 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import model.Empresa;
 
-public class EmpresaDAO implements IDao {
+public class EmpresaDAO {
 
-    protected Connection connection;
-    private PreparedStatement statement;
-    private List<Object> lst;
+    EntityManager entityManager;
+
+    Query qry;
+    String sql;
 
     public EmpresaDAO() {
-        //this.connection = Persistencia.getInstance().getConexao();     
+        entityManager = Database.getInstance().getEntityManager();
     }
 
-    @Override
-    public void save(Object obj) {
-        Empresa empresa = (Empresa) obj;
-
-        String sql = " INSERT INTO "
-                + " empresa(nome, cnpj) "
-                + " VALUES(?,?) ";
-        try {
-            connection = Persistencia.getConnection();
-            statement = connection.prepareStatement(sql);
-
-            //preencher cada ? com o campo adequado
-            statement.setString(1, empresa.getNome());
-            statement.setString(2, empresa.getCnpj() + "");
-
-            statement.execute();
-            statement.close();
-        } catch (SQLException u) {
-            throw new RuntimeException(u);
-        } finally {
-            Persistencia.closeConnection();
+    public void save(Empresa empresa) {
+        this.entityManager.getTransaction().begin();
+        if (empresa != null && empresa.getId() > 0) {
+            this.entityManager.merge(empresa);
+        } else {
+            this.entityManager.persist(empresa);
         }
+        this.entityManager.getTransaction().commit();
+    }
+
+    public void delete(Empresa empresa) {
+        this.entityManager.getTransaction().begin();
+        this.entityManager.remove(empresa);
+        this.entityManager.getTransaction().commit();
+    }
+
+    public Empresa find(int id) {
+        //Está é um HQL (Hibernate Query Language)
+        sql = " SELECT e "
+                + " FROM Empresa e "
+                + " WHERE id = :id ";
+
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("id", id);
+
+        List lst = qry.getResultList();
+        if (lst.isEmpty()) {
+            return null;
+        } else {
+            return (Empresa) lst.get(0);
+        }
+    }
+
+    public List<Empresa> findAll() {
+        //Está é um HQL (Hibernate Query Language)
+        sql = " SELECT e "
+                + " FROM Empresa e ";
+
+        qry = this.entityManager.createQuery(sql);
+
+        List lst = qry.getResultList();
+        return (List<Empresa>) lst;
     }
 
     public Empresa findByCnpj(String cnpj) {
-        for (Object obj : this.lst) {
-            Empresa empresa = (Empresa) obj;
-            if (empresa.getCnpj().equals(cnpj)) {
-                return empresa;
-            }
-        }
+        //Está é um HQL (Hibernate Query Language)
+        sql = " SELECT e "
+                + " FROM Empresa e "
+                + " WHERE cnpj like :cnpj ";
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("cnpj", cnpj);
 
-        return null;
-    }
+        List lst = qry.getResultList();
 
-    public void update(Object obj) {
-        Empresa empresa = (Empresa) obj;
-
-        String sql = " UPDATE empresa "
-                + " SET nome=?"
-                + " WHERE cnpj = ?";
-        try {
-            connection = Persistencia.getConnection();
-            statement = connection.prepareStatement(sql);
-
-            //preencher cada ? com o campo adequado
-            statement.setString(1, empresa.getNome());
-
-            //preenche a condição do WHERE
-            statement.setString(2, empresa.getCnpj());
-
-            statement.execute();
-            statement.close();
-        } catch (SQLException u) {
-            throw new RuntimeException(u);
-        } finally {
-            Persistencia.closeConnection();
+        if (lst.isEmpty()) {
+            return null;
+        } else {
+            return (Empresa) lst.get(0);
         }
     }
 
-    /**
-     * Procura uma empresa pelo CNPJ, que é o identificador único
-     *
-     * @param cnpj da empresa
-     * @return Referencia para a empresa na lstEmpresa
-     */
-    /**
-     * Recebe uma Empresa como parametro, procura a Empresa pelo Cnpj Se
-     * encontrar remove ele da lstEmpresa.
-     *
-     * @param obj
-     * @param Empresa
-     * @return
-     */
-    @Override
-    public boolean delete(Object obj) {
-        Empresa empresa = (Empresa) obj;
-
-        String sql = " DELETE FROM empresa WHERE cnpj = ? ";
-        try {
-            connection = Persistencia.getConnection();
-            statement = connection.prepareStatement(sql);
-            //preenche a condição
-
-            statement.execute();
-            statement.close();
-            return true;
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        } finally {
-            Persistencia.closeConnection();
-        }
+    public void update(Empresa empresa) {
+        this.entityManager.getTransaction().begin();
+        this.entityManager.merge(empresa);
+        this.entityManager.getTransaction().commit();
     }
-
-    @Override
-    public Object find(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Object> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

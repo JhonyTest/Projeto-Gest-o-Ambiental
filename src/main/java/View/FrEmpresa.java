@@ -50,7 +50,7 @@ public class FrEmpresa extends javax.swing.JFrame {
 
     public void adicionarMascaraNosCampos() {
         try {
-            MaskFormatter maskCnpj = new MaskFormatter("##.###.###/###.###-##");
+            MaskFormatter maskCnpj = new MaskFormatter("##.###.###/####-##");
             maskCnpj.install(fEdtCnpj);
         } catch (ParseException ex) {
             Logger.getLogger(FrEmpresa.class.getName()).log(Level.SEVERE, null, ex);
@@ -177,7 +177,7 @@ public class FrEmpresa extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addComponent(lblCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
+                                .addGap(18, 18, 18)
                                 .addComponent(fEdtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)

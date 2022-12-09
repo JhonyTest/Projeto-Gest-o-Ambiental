@@ -17,41 +17,34 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.Fiscal;
 
-public class FiscalDAO 
-{
+public class FiscalDAO {
+
     EntityManager entityManager;
-    
+
     Query qry;
     String sql;
 
-    public FiscalDAO() 
-    {
+    public FiscalDAO() {
         entityManager = Database.getInstance().getEntityManager();
     }
 
-    public void save(Fiscal fiscal) 
-    {
+    public void save(Fiscal fiscal) {
         this.entityManager.getTransaction().begin();
-        if (fiscal != null && fiscal.getId() > 0) 
-        {
+        if (fiscal != null && fiscal.getId() > 0) {
             this.entityManager.merge(fiscal);
-        } 
-        else 
-        {
+        } else {
             this.entityManager.persist(fiscal);
         }
         this.entityManager.getTransaction().commit();
     }
 
-    public void delete(Fiscal fiscal) 
-    {
+    public void delete(Fiscal fiscal) {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(fiscal);
         this.entityManager.getTransaction().commit();
     }
 
-    public Fiscal find(int id) 
-    {
+    public Fiscal find(int id) {
         //Está é um HQL (Hibernate Query Language)
         sql = " SELECT f "
                 + " FROM Fiscal f "
@@ -59,53 +52,39 @@ public class FiscalDAO
 
         qry = this.entityManager.createQuery(sql);
         qry.setParameter("id", id);
-        
+
         List lst = qry.getResultList();
-        if (lst.isEmpty()) 
-        {
+        if (lst.isEmpty()) {
             return null;
-        } 
-        else 
-        {
+        } else {
             return (Fiscal) lst.get(0);
         }
     }
 
-    public List<Fiscal> findAll() 
-    {
+    public List<Fiscal> findAll() {
         //Está é um HQL (Hibernate Query Language)
         sql = " SELECT f "
                 + " FROM Fiscal f ";
 
         qry = this.entityManager.createQuery(sql);
-        
+
         List lst = qry.getResultList();
         return (List<Fiscal>) lst;
     }
-    
-    
-    
-    
-    
-    
-    
-    public Fiscal findByCpf(String cpf) 
-    {
+
+    public Fiscal findByCpf(String cpf) {
         //Está é um HQL (Hibernate Query Language)
         sql = " SELECT f "
                 + " FROM Fiscal f "
                 + " WHERE cpf like :cpf ";
         qry = this.entityManager.createQuery(sql);
         qry.setParameter("cpf", cpf);
-        
+
         List lst = qry.getResultList();
 
-        if (lst.isEmpty()) 
-        {
+        if (lst.isEmpty()) {
             return null;
-        } 
-        else 
-        {
+        } else {
             return (Fiscal) lst.get(0);
         }
     }
