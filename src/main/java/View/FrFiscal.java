@@ -4,8 +4,16 @@
  */
 package View;
 
+import Controller.FiscalController;
+import Exceptions.FiscalException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 import model.Fiscal;
 
 /**
@@ -14,14 +22,50 @@ import model.Fiscal;
  */
 public class FrFiscal extends javax.swing.JFrame {
 
-    
-    
-    public FrFiscal( ) {
+    FiscalController fiscalController;
+    String cpfFiscalEditando;
+
+    public FrFiscal() {
+        fiscalController = new FiscalController();
+        cpfFiscalEditando = "-";
+
         initComponents();
+        this.adicionarMascaraNosCampos();
         this.habilitarCampos(false);
+        this.limparCampos();
+
+        fiscalController.atualizarTabela(grdFiscal);
     }
 
-   
+    public void habilitarCampos(boolean flag) {
+        edtNome.setEnabled(flag);
+        edtSexo.setEnabled(flag);
+        edtIdade.setEnabled(flag);
+        fEdtCpf.setEnabled(flag);
+    }
+
+    public void limparCampos() {
+        edtNome.setText("");
+        edtSexo.setText("");
+        edtIdade.setText("");
+        fEdtCpf.setText("");
+    }
+
+    public void adicionarMascaraNosCampos() {
+        try {
+            MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
+            maskCpf.install(fEdtCpf);
+        } catch (ParseException ex) {
+            Logger.getLogger(FrFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void preencherFormulario(Fiscal f) {
+        edtNome.setText(f.getNome());
+        edtSexo.setText(f.getSexo() + "");
+        edtIdade.setText(f.getIdade() + "");
+        fEdtCpf.setText(f.getCpf());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,7 +76,6 @@ public class FrFiscal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -43,16 +86,14 @@ public class FrFiscal extends javax.swing.JFrame {
         lblIdade = new javax.swing.JLabel();
         edtIdade = new javax.swing.JTextField();
         lblCpf = new javax.swing.JLabel();
-        edtCpf = new javax.swing.JFormattedTextField();
         lblSexo = new javax.swing.JLabel();
         edtSexo = new javax.swing.JTextField();
+        fEdtCpf = new javax.swing.JFormattedTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        grdFiscal = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Fira Sans", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Cadastro de Fiscal");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         btnNovo.setForeground(new java.awt.Color(0, 25, 255));
         btnNovo.setText("Novo");
@@ -98,14 +139,54 @@ public class FrFiscal extends javax.swing.JFrame {
 
         lblSexo.setText("Sexo:");
 
+        grdFiscal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        grdFiscal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grdFiscalMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(grdFiscal);
+
+        jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel2.setText("Cadastro de Fiscal");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSexo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(edtNome)
+                                .addGap(28, 28, 28))
+                            .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(86, 86, 86))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -115,31 +196,19 @@ public class FrFiscal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edtNome))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(lblSexo)
-                        .addGap(18, 18, 18)
-                        .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,21 +218,17 @@ public class FrFiscal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblIdade)
-                            .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSexo)
-                            .addComponent(lblCpf)
-                            .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIdade)
+                    .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSexo)
+                    .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf)
+                    .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,24 +240,87 @@ public class FrFiscal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       
+        Fiscal fiscalEditando = (Fiscal) this.getObjetoSelecionadoNaGrid();
+
+        if (fiscalEditando == null)
+            JOptionPane.showMessageDialog(this, "Primeiro selecione um registro na tabela.");
+        else {
+            this.limparCampos();
+            this.habilitarCampos(true);
+            this.preencherFormulario(fiscalEditando);
+            this.cpfFiscalEditando = fiscalEditando.getCpf();
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        //cpfProfessorEditando = "-";
+
         this.limparCampos();
         this.habilitarCampos(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-       
+    private Object getObjetoSelecionadoNaGrid() {
+        int rowCliked = grdFiscal.getSelectedRow();
+        Object obj = null;
+        if (rowCliked >= 0) {
+            obj = grdFiscal.getModel().getValueAt(rowCliked, -1);
+        }
+        return obj;
+    }
 
-         
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+        Fiscal fiscalExcluido = (Fiscal) this.getObjetoSelecionadoNaGrid();
+
+        if (fiscalExcluido == null)
+            JOptionPane.showMessageDialog(this, "Primeiro selecione um registro na tabela.");
+        else {
+            int response = JOptionPane.showConfirmDialog(null,
+                    "Deseja excluir o Fiscal  \n("
+                    + fiscalExcluido.getNome() + ", "
+                    + fiscalExcluido.getCpf() + ") ?",
+                    "Confirmar exclusão",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.OK_OPTION) {
+                try {
+                    fiscalController.excluirFiscal(fiscalExcluido);
+
+                    fiscalController.atualizarTabela(grdFiscal);
+                    JOptionPane.showMessageDialog(this, "Exclusão feita com sucesso!");
+                } catch (FiscalException ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                }
+            }
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-  
+        try {
+            if (!cpfFiscalEditando.equals("-")) {
+                fiscalController.atualizarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText());
+            } else {
+                fiscalController.cadastrarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText());
+            }
+            cpfFiscalEditando = "-";
+            fiscalController.atualizarTabela(grdFiscal);
+
+            this.habilitarCampos(false);
+            this.limparCampos();
+        } catch (FiscalException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+
+
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void grdFiscalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grdFiscalMouseClicked
+        if (evt.getClickCount() == 2) {
+            btnEditarActionPerformed(null);
+        }
+    }//GEN-LAST:event_grdFiscalMouseClicked
 
     /**
      * @param args the command line arguments
@@ -224,26 +352,9 @@ public class FrFiscal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-             
+
             }
         });
-    }
-    
-    
-      public void habilitarCampos(boolean flag) 
-    {
-        edtNome.setEnabled(flag);
-         edtSexo.setEnabled(flag);
-          edtIdade.setEnabled(flag);
-          edtCpf.setEnabled(flag);
-    }
-    
-    public void limparCampos() 
-    {
-        edtNome.setText("");
-        edtSexo.setText("");
-        edtIdade.setText("");
-        edtCpf.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -252,18 +363,17 @@ public class FrFiscal extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JFormattedTextField edtCpf;
     private javax.swing.JTextField edtIdade;
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtSexo;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JFormattedTextField fEdtCpf;
+    private javax.swing.JTable grdFiscal;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSexo;
     // End of variables declaration//GEN-END:variables
 
-    private void preencherFormulario(Fiscal fiscalEditando) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
