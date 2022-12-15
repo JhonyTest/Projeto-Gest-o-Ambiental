@@ -23,9 +23,9 @@ public class EmpresaController {
         repositorio = new EmpresaDAO();
     }
 
-    public void cadastrarEmpresa(String nome, String cnpj) {
+    public void cadastrarEmpresa(String nome, String cnpj, String senha) {
         ValidateEmpresa valid = new ValidateEmpresa();
-        Empresa novoEmpresa = valid.validacao(nome, cnpj);
+        Empresa novoEmpresa = valid.validacao(nome, cnpj, senha);
 
         if (repositorio.findByCnpj(cnpj) == null) {
             repositorio.save(novoEmpresa);
@@ -34,9 +34,9 @@ public class EmpresaController {
         }
     }
 
-    public void atualizarEmpresa(String nome, String cnpj) {
+    public void atualizarEmpresa(String nome, String cnpj, String senha) {
         ValidateEmpresa valid = new ValidateEmpresa();
-        Empresa novoEmpresa = valid.validacao(nome, cnpj);
+        Empresa novoEmpresa = valid.validacao(nome, cnpj, senha);
         novoEmpresa.setCnpj(cnpj);
 
         repositorio.update(novoEmpresa);
@@ -49,6 +49,7 @@ public class EmpresaController {
     public void atualizarTabela(JTable grd) 
     {
         Util.jTableShow(grd, new TMEmpresa(repositorio.findAll()), null);
+        
     }
 
     public void excluirEmpresa(Empresa empresa) {

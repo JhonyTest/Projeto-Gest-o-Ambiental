@@ -21,17 +21,20 @@ public class Empresa {
     public int id;
     public String nome;
     public String cnpj;
+    public String senha;
 
     public Empresa() {
-        this.id = -1;
+        this.id = 0;
         this.nome = "";
         this.cnpj = "";
+        this.senha = "";
     }
 
     public void Copiar(Empresa outro) {
         this.id = outro.getId();
         this.nome = outro.getNome();
         this.cnpj = outro.getCnpj();
+        this.senha = outro.getSenha();
     }
 
     public String imprimirParaString() {
@@ -40,6 +43,7 @@ public class Empresa {
                 + "Id:" + this.id + "\n"
                 + "Nome:" + this.nome + "\n"
                 + "Cnpj:" + this.cnpj + "\n"
+                + "Senha:" + this.senha + "\n"
                 + "----------------------------\n";
         return saida;
     }
@@ -68,5 +72,14 @@ public class Empresa {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+    
+    public String getSenha() 
+    {
+        return this.senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

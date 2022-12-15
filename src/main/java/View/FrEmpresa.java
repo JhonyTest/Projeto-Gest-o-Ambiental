@@ -41,11 +41,13 @@ public class FrEmpresa extends javax.swing.JFrame {
     public void habilitarCampos(boolean flag) {
         edtNome.setEnabled(flag);
         fEdtCnpj.setEnabled(flag);
+        edtPass.setEnabled(flag);
     }
 
     public void limparCampos() {
         edtNome.setText("");
         fEdtCnpj.setText("");
+        edtPass.setText("");
     }
 
     public void adicionarMascaraNosCampos() {
@@ -60,6 +62,7 @@ public class FrEmpresa extends javax.swing.JFrame {
     public void preencherFormulario(Empresa e) {
         edtNome.setText(e.getNome());
         fEdtCnpj.setText(e.getCnpj());
+        edtPass.setText(e.getSenha());
     }
 
     /**
@@ -82,7 +85,9 @@ public class FrEmpresa extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         grdEmpresa = new javax.swing.JTable();
         fEdtCnpj = new javax.swing.JFormattedTextField();
+        edtPass = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,8 +149,16 @@ public class FrEmpresa extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(grdEmpresa);
 
+        edtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtPassActionPerformed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel2.setText("Cadastro de Empresa");
+
+        jLabel1.setText("Senha:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,9 +189,13 @@ public class FrEmpresa extends javax.swing.JFrame {
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addComponent(lblCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
                                 .addGap(18, 18, 18)
-                                .addComponent(fEdtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(edtPass)
+                                    .addComponent(fEdtCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,7 +220,11 @@ public class FrEmpresa extends javax.swing.JFrame {
                     .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCnpj)
                     .addComponent(fEdtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(5, 5, 5)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -214,12 +235,14 @@ public class FrEmpresa extends javax.swing.JFrame {
     public void objetoParaCampos(Empresa e) {
         edtNome.setText(e.getNome() + "");
         fEdtCnpj.setText(e.getCnpj() + "");
+        edtPass.setText(e.getSenha() + "");
     }
 
     public Empresa camposParaObjeto() {
         Empresa e = new Empresa();
         e.setNome(edtNome.getText());
         e.setCnpj(fEdtCnpj.getText());
+        e.setCnpj(edtPass.getText());
 
         return e;
     }
@@ -276,13 +299,14 @@ public class FrEmpresa extends javax.swing.JFrame {
         {
             if (!cnpjEmpresaEditando.equals("-")) 
             {
-               empresaController.atualizarEmpresa( edtNome.getText(), fEdtCnpj.getText());
+               empresaController.atualizarEmpresa( edtNome.getText(), fEdtCnpj.getText(), edtPass.getText());
             } 
             else 
             {
-                empresaController.cadastrarEmpresa(edtNome.getText(), fEdtCnpj.getText());
+                empresaController.cadastrarEmpresa(edtNome.getText(), fEdtCnpj.getText(),edtPass.getText());
             }
             cnpjEmpresaEditando = "-";
+            
             empresaController.atualizarTabela(grdEmpresa);
             
             this.habilitarCampos(false);
@@ -315,6 +339,11 @@ public class FrEmpresa extends javax.swing.JFrame {
             this.cnpjEmpresaEditando = empresaEditando.getCnpj();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void edtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPassActionPerformed
+        this.habilitarCampos(true);
+        this.limparCampos();
+    }//GEN-LAST:event_edtPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,8 +399,10 @@ public class FrEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField edtNome;
+    private javax.swing.JPasswordField edtPass;
     private javax.swing.JFormattedTextField fEdtCnpj;
     private javax.swing.JTable grdEmpresa;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCnpj;

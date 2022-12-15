@@ -19,19 +19,23 @@ class TMEmpresa extends AbstractTableModel {
     private final int COL_ID = 0;
     private final int COL_NOME = 1;
     private final int COL_CNPJ = 2;
+    private final int COL_SENHA = 3;
+    
 
-    public TMEmpresa(List<Empresa> lstEmpresa) {
+    public TMEmpresa(List<Empresa> lstEmpresa) { 
         this.lista = lstEmpresa;
+      
     }
 
     @Override
     public int getRowCount() {
         return this.lista.size();
+      
     }
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -45,7 +49,10 @@ class TMEmpresa extends AbstractTableModel {
 
             case COL_CNPJ:
                 return "Cnpj";
-
+                
+            case COL_SENHA:
+                return "Senha";
+            
             default:
                 break;
         }
@@ -73,11 +80,14 @@ class TMEmpresa extends AbstractTableModel {
 
                 case COL_CNPJ:
                     return aux.getCnpj();
-                default:
-                    break;
+                    
+                case COL_SENHA:
+                    return aux.getSenha();
+
+                default:    
             }
         }
         return aux;
     }
-
+   
 }
