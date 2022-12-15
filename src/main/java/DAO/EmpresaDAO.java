@@ -36,6 +36,7 @@ public class EmpresaDAO {
             this.entityManager.persist(empresa);
         }
         this.entityManager.getTransaction().commit();
+        //this.entityManager.getTransaction().rollback();
     }
 
     public void delete(Empresa empresa) {
@@ -50,7 +51,7 @@ public class EmpresaDAO {
                 + " FROM Empresa e "
                 + " WHERE id = :id ";
 
-        qry = this.entityManager.createQuery(sql);
+        qry = this.entityManager.createQuery(sql);  
         qry.setParameter("id", id);
 
         List lst = qry.getResultList();

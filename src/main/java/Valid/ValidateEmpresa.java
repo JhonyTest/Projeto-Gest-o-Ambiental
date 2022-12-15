@@ -68,7 +68,7 @@ public class ValidateEmpresa {
         }
     }
     
-    public Empresa validacao(String nome, String cnpj) {
+    public Empresa validacao(String nome, String cnpj, String senha) {
         Empresa e = new Empresa();
         if (nome.isEmpty()) {
             throw new EmpresaException("Error - Campo vazio: 'nome'.");
@@ -78,6 +78,11 @@ public class ValidateEmpresa {
         if (cnpj.isEmpty()) {
             throw new EmpresaException("Error - Campo vazio: 'cnpj'.");
         }
+        
+        if (senha.isEmpty()) {
+            throw new EmpresaException("Error - Campo vazio: 'senha'.");
+        }
+        e.setSenha(senha);
 
         ValidateEmpresa validCNPJ = new ValidateEmpresa();
         if (!validCNPJ.validaCNPJ(cnpj)) 
@@ -86,7 +91,7 @@ public class ValidateEmpresa {
         } 
 
         e.setCnpj(cnpj);
-     
+  
         return e;
     }
 }
