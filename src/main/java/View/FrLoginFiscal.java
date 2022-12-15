@@ -5,6 +5,11 @@
 package View;
 
 import Controller.FiscalController;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -20,9 +25,21 @@ public class FrLoginFiscal extends javax.swing.JFrame {
      */
     public FrLoginFiscal() {
         initComponents();
-                fiscalController = new FiscalController();
+        fiscalController = new FiscalController();
+        this.adicionarMascaraNosCampos();
     }
 
+    
+     public void adicionarMascaraNosCampos() {
+        try {
+            MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
+            maskCpf.install(edtCpf);
+        } catch (ParseException ex) {
+            Logger.getLogger(FrCadFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,9 +51,9 @@ public class FrLoginFiscal extends javax.swing.JFrame {
 
         btnLogar = new javax.swing.JButton();
         lblCpf = new javax.swing.JLabel();
-        fEdtCpf = new javax.swing.JFormattedTextField();
+        edtCpf = new javax.swing.JFormattedTextField();
         lblSexo1 = new javax.swing.JLabel();
-        edtPass = new javax.swing.JPasswordField();
+        edtSenha = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,7 +69,7 @@ public class FrLoginFiscal extends javax.swing.JFrame {
 
         lblSexo1.setText("Senha:");
 
-        edtPass.setToolTipText("");
+        edtSenha.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel2.setText("Login Fiscal");
@@ -67,13 +84,13 @@ public class FrLoginFiscal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSexo1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(108, Short.MAX_VALUE)
@@ -88,11 +105,11 @@ public class FrLoginFiscal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCpf)
-                    .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSexo1)
-                    .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
@@ -102,7 +119,14 @@ public class FrLoginFiscal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        
+          try {
+            fiscalController.checkLogin(edtCpf.getText(), edtSenha.getText());
+            FrFiscal tela1 = new FrFiscal();
+            tela1.setVisible(true);
+            this.setVisible(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
         
 
     }//GEN-LAST:event_btnLogarActionPerformed
@@ -144,8 +168,8 @@ public class FrLoginFiscal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;
-    private javax.swing.JPasswordField edtPass;
-    private javax.swing.JFormattedTextField fEdtCpf;
+    private javax.swing.JFormattedTextField edtCpf;
+    private javax.swing.JPasswordField edtSenha;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblSexo1;

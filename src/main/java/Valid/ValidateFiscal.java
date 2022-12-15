@@ -81,7 +81,7 @@ public class ValidateFiscal {
         return false;
     }
 
-    public Fiscal validacao(String nome, String sexo, String idade, String cpf, String pass) {
+    public Fiscal validacao(String nome, String sexo, String idade, String cpf, String senha) {
         Fiscal f = new Fiscal();
         if (nome.isEmpty()) {
             throw new FiscalException("Error - Campo vazio: 'nome'.");
@@ -117,12 +117,13 @@ public class ValidateFiscal {
 
         f.setCpf(cpf);
         
-        if (pass.isEmpty()) {
+        if (senha.isEmpty()) {
             throw new FiscalException("Error - Campo vazio: 'senha'.");
         }
-        f.setPass(pass);
+        f.setSenha(senha);
 
         return f;
         
     }
+     
 }
