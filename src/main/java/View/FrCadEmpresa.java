@@ -21,12 +21,12 @@ import model.Empresa;
  *
  * @author 05916799730
  */
-public class FrEmpresa extends javax.swing.JFrame {
+public class FrCadEmpresa extends javax.swing.JFrame {
 
     EmpresaController empresaController;
     String cnpjEmpresaEditando;
 
-    public FrEmpresa() {
+    public FrCadEmpresa() {
         empresaController = new EmpresaController();
         cnpjEmpresaEditando = "-";
 
@@ -55,7 +55,7 @@ public class FrEmpresa extends javax.swing.JFrame {
             MaskFormatter maskCnpj = new MaskFormatter("##.###.###/####-##");
             maskCnpj.install(fEdtCnpj);
         } catch (ParseException ex) {
-            Logger.getLogger(FrEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrCadEmpresa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -363,25 +363,26 @@ public class FrEmpresa extends javax.swing.JFrame {
 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrEmpresa.class  
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
 
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
 } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrEmpresa.class  
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
 
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
 } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrEmpresa.class  
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
 
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
 } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrEmpresa.class  
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
 
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

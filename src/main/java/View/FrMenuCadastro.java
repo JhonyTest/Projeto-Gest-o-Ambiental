@@ -74,13 +74,13 @@ public class FrMenuCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadFiscalActionPerformed
-        FrFiscal janela = new FrFiscal();
+        FrCadFiscal janela = new FrCadFiscal();
         janela.show();
         this.setVisible(false);
     }//GEN-LAST:event_btnCadFiscalActionPerformed
 
     private void btnCadEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadEmpresaActionPerformed
-        FrEmpresa janela = new FrEmpresa();
+        FrCadEmpresa janela = new FrCadEmpresa();
         janela.show();
         this.setVisible(false);
     }//GEN-LAST:event_btnCadEmpresaActionPerformed

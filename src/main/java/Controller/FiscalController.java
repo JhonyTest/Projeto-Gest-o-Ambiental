@@ -7,6 +7,7 @@ package Controller;
 import DAO.FiscalDAO;
 import Exceptions.FiscalException;
 import Valid.ValidateFiscal;
+import Valid.ValidateLoginFiscal;
 import java.util.List;
 import javax.swing.JTable;
 import model.Fiscal;
@@ -27,7 +28,7 @@ public class FiscalController {
         ValidateFiscal valid = new ValidateFiscal();
         Fiscal novoFiscal = valid.validacao(nome, sexo, idade, cpf, pass);
 
-        if (repositorio.findByCpf(cpf) != null) {
+        if (repositorio.findByCpf(cpf) == null) {
             repositorio.save(novoFiscal);
         } else {
             throw new FiscalException("Error - Já existe um fiscal com este 'CPF'.");
@@ -59,12 +60,11 @@ public class FiscalController {
             throw new FiscalException("Error - Fiscal inexistente.");
         }
     }
-    public void login(Fiscal fiscal){
-             
-        if (fiscal.getPass() == null ? pass != null : !fiscal.getPass().equals(pass)) {
-           throw new FiscalException("Erro - Senha incorreta.");
-        }
-        
+      public void checkLogin(String cpf, String senha) {
+            ValidateLoginFiscal valid = new ValidateLoginFiscal();
+            valid.validEntrada(cpf, senha);
+            valid.validLogin(this.buscarFiscal(cpf), senha);
     }
-   
 }
+   
+
