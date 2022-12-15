@@ -23,23 +23,24 @@ public class FiscalController {
         repositorio = new FiscalDAO();
     }
 
-    public void cadastrarFiscal(String nome, String sexo, String idade, String cpf) {
+    public void cadastrarFiscal(String nome, String sexo, String idade, String cpf, String pass) {
         ValidateFiscal valid = new ValidateFiscal();
-        Fiscal novoFiscal = valid.validacao(nome, sexo, idade, cpf);
+        Fiscal novoFiscal = valid.validacao(nome, sexo, idade, cpf, pass);
 
-        if (repositorio.findByCpf(cpf) == null) {
+        if (repositorio.findByCpf(cpf) != null) {
             repositorio.save(novoFiscal);
         } else {
             throw new FiscalException("Error - Já existe um fiscal com este 'CPF'.");
         }
     }
 
-    public void atualizarFiscal(String nome, String sexo, String idade, String cpf) {
+    public void atualizarFiscal(String nome, String sexo, String idade, String cpf, String pass) {
         ValidateFiscal valid = new ValidateFiscal();
-        Fiscal novoFiscal = valid.validacao(nome, sexo, idade, cpf);
+        Fiscal novoFiscal = valid.validacao(nome, sexo, idade, cpf, pass);
         novoFiscal.setCpf(cpf);
 
         repositorio.update(novoFiscal);
+      
     }
 
     public Fiscal buscarFiscal(String cpf) {
@@ -58,4 +59,12 @@ public class FiscalController {
             throw new FiscalException("Error - Fiscal inexistente.");
         }
     }
+    public void login(Fiscal fiscal){
+             
+        if (fiscal.getPass() == null ? pass != null : !fiscal.getPass().equals(pass)) {
+           throw new FiscalException("Erro - Senha incorreta.");
+        }
+        
+    }
+   
 }

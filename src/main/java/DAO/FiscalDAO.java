@@ -14,7 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import model.Fiscal;
 
 public class FiscalDAO {
@@ -43,6 +45,25 @@ public class FiscalDAO {
         this.entityManager.remove(fiscal);
         this.entityManager.getTransaction().commit();
     }
+    
+        public void update(Fiscal fiscal) {
+       this.entityManager.getTransaction().begin();
+        if (fiscal != null && fiscal.getId() > 0) {
+            this.entityManager.merge(fiscal);
+        } else {
+            this.entityManager.persist(fiscal);
+        }
+        this.entityManager.getTransaction().commit();
+    }
+
+       public Fiscal login(String pass){
+           
+         
+        return null;
+           
+         
+       }
+    
 
     public Fiscal find(int id) {
         //Está é um HQL (Hibernate Query Language)
@@ -88,10 +109,28 @@ public class FiscalDAO {
             return (Fiscal) lst.get(0);
         }
     }
+    
+    public boolean login(String cpf, String pass)
+    {
+       try{
+            EntityTransaction entr=entityManager.getTransaction();
+            entr.begin();
 
-    public void update(Fiscal fiscal) {
-        this.entityManager.getTransaction().begin();
-        this.entityManager.merge(fiscal);
-        this.entityManager.getTransaction().commit();
+        TypedQuery<Fiscal> query = entityManager.createQuery("SELECT u FROM fiscal f WHERE f.cpf = :cpf AND f.password = :pass", Fiscal.class);        
+        query.setParameter(1, cpf);
+        query.setParameter(2, pass); 
+        try{ 
+            Fiscal f = query.getSingleResult();
+            return true;
+        }catch(javax.persistence.NoResultException e)
+        {
+            return false;
+        }
+        }
+        finally{
+        entityManager.close();
+        }
+
     }
+
 }

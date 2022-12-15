@@ -15,7 +15,7 @@ import model.Fiscal;
 class TMFiscal extends AbstractTableModel {
 
     private List<Fiscal> lista;
-
+    
     private final int COL_ID = 0;
     private final int COL_NOME = 1;
     private final int COL_IDADE = 2;
@@ -39,7 +39,7 @@ class TMFiscal extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch (column) {
-            case COL_ID:
+           case COL_ID:
                 return "ID";
             
             case COL_NOME:
@@ -53,6 +53,8 @@ class TMFiscal extends AbstractTableModel {
             
             case COL_CPF:
                 return "Cpf";
+                
+          
 
             default:
                 break;
@@ -72,8 +74,10 @@ class TMFiscal extends AbstractTableModel {
             switch (columnIndex) {
                 case -1:
                     return aux;
+                
                 case COL_ID:
                     return aux.getId();
+                    
                 case COL_NOME:
                     return aux.getNome();
                 case COL_SEXO:
@@ -82,6 +86,7 @@ class TMFiscal extends AbstractTableModel {
                     return aux.getIdade();
                 case COL_CPF:
                     return aux.getCpf();
+             
                 default:
                     break;
             }

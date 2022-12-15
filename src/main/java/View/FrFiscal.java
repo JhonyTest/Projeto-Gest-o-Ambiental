@@ -42,6 +42,7 @@ public class FrFiscal extends javax.swing.JFrame {
         edtSexo.setEnabled(flag);
         edtIdade.setEnabled(flag);
         fEdtCpf.setEnabled(flag);
+        edtPass.setEnabled(flag);
     }
 
     public void limparCampos() {
@@ -49,6 +50,7 @@ public class FrFiscal extends javax.swing.JFrame {
         edtSexo.setText("");
         edtIdade.setText("");
         fEdtCpf.setText("");
+        edtPass.setText("");
     }
 
     public void adicionarMascaraNosCampos() {
@@ -65,6 +67,7 @@ public class FrFiscal extends javax.swing.JFrame {
         edtSexo.setText(f.getSexo() + "");
         edtIdade.setText(f.getIdade() + "");
         fEdtCpf.setText(f.getCpf());
+        edtPass.setText(f.getPass());
     }
 
     /**
@@ -92,6 +95,8 @@ public class FrFiscal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         grdFiscal = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        lblSexo1 = new javax.swing.JLabel();
+        edtPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,6 +165,14 @@ public class FrFiscal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel2.setText("Cadastro de Fiscal");
 
+        lblSexo1.setText("Senha:");
+
+        edtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtPassActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,23 +182,28 @@ public class FrFiscal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSexo))
+                            .addComponent(lblSexo1)
+                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(edtNome)
-                                .addGap(28, 28, 28))
-                            .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(30, 30, 30)
+                                .addComponent(lblSexo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(lblIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(86, 86, 86))
+                            .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,8 +213,9 @@ public class FrFiscal extends javax.swing.JFrame {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -220,13 +239,15 @@ public class FrFiscal extends javax.swing.JFrame {
                     .addComponent(lblNome)
                     .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIdade)
-                    .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSexo)
+                    .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSexo)
-                    .addComponent(edtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCpf)
-                    .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fEdtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSexo1)
+                    .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
         );
@@ -299,9 +320,9 @@ public class FrFiscal extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {
             if (!cpfFiscalEditando.equals("-")) {
-                fiscalController.atualizarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText());
+                fiscalController.atualizarFiscal(edtNome.getText(), edtSexo.getText() ,edtIdade.getText(), fEdtCpf.getText(),edtPass.getText() );
             } else {
-                fiscalController.cadastrarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText());
+                fiscalController.cadastrarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText(),edtPass.getText());
             }
             cpfFiscalEditando = "-";
             fiscalController.atualizarTabela(grdFiscal);
@@ -321,6 +342,11 @@ public class FrFiscal extends javax.swing.JFrame {
             btnEditarActionPerformed(null);
         }
     }//GEN-LAST:event_grdFiscalMouseClicked
+
+    private void edtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPassActionPerformed
+         this.limparCampos();
+            this.habilitarCampos(true);
+    }//GEN-LAST:event_edtPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,6 +391,7 @@ public class FrFiscal extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField edtIdade;
     private javax.swing.JTextField edtNome;
+    private javax.swing.JPasswordField edtPass;
     private javax.swing.JTextField edtSexo;
     private javax.swing.JFormattedTextField fEdtCpf;
     private javax.swing.JTable grdFiscal;
@@ -374,6 +401,7 @@ public class FrFiscal extends javax.swing.JFrame {
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSexo;
+    private javax.swing.JLabel lblSexo1;
     // End of variables declaration//GEN-END:variables
 
 }

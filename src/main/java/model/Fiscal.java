@@ -23,6 +23,7 @@ public class Fiscal {
     private char sexo;
     private int idade;
     private String cpf;
+    private String pass;
 
     public Fiscal() {
         this.nome = "";
@@ -30,6 +31,7 @@ public class Fiscal {
         this.idade = 0;
         this.cpf = "000.000.000-00";
         this.id = -1;
+        this.pass = "";
     }
 
     public void copiar(Fiscal outro) {
@@ -38,6 +40,7 @@ public class Fiscal {
         this.sexo = outro.getSexo();
         this.idade = outro.getIdade();
         this.cpf = outro.getCpf();
+        this.pass = outro.getPass();
     }
 
     public String imprimirParaString() {
@@ -48,6 +51,7 @@ public class Fiscal {
                 + "Sexo:" + this.sexo + "\n"
                 + "Idade:" + this.idade + "\n"
                 + "Cpf:" + this.cpf + "\n"
+                + "Senha:" + this.pass + "\n"
                 + "----------------------------\n";
         return saida;
     }
@@ -96,4 +100,12 @@ public class Fiscal {
         this.cpf = cpf;
     }
 
+    public  String getPass() {
+        return pass;
+    }
+    
+   public void setPass(String pass){
+       this.pass = pass;
+   }
+    
 }

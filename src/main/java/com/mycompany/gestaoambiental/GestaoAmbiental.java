@@ -4,7 +4,7 @@
  */
 package com.mycompany.gestaoambiental;
 
-import View.FrMenuCadastro;
+import View.FrMenuPrincipal;
 
 /**
  *
@@ -12,8 +12,8 @@ import View.FrMenuCadastro;
 public class GestaoAmbiental {
 
     public static void main(String[] args) {
-        FrMenuCadastro telacad = new FrMenuCadastro();
-        telacad.setVisible(true);
+        FrMenuPrincipal tela = new FrMenuPrincipal();
+        tela.setVisible(true);
     }
 
 }
