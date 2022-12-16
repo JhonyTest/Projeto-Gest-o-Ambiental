@@ -15,7 +15,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
      */
     public FrMenuPrincipal() {
         initComponents();
-       
+
     }
 
     /**
@@ -86,7 +86,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogin
 
     private void btnMenuCadastro(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuCadastro
-         FrMenuCadastro janela = new FrMenuCadastro();
+        FrMenuCadastro janela = new FrMenuCadastro();
         janela.show();
         this.setVisible(false);
     }//GEN-LAST:event_btnMenuCadastro

@@ -7,6 +7,8 @@ package Controller;
 import DAO.EmpresaDAO;
 import Exceptions.EmpresaException;
 import Valid.ValidateEmpresa;
+import Valid.ValidateLoginEmpresa;
+
 import java.util.List;
 import javax.swing.JTable;
 import model.Empresa;
@@ -46,10 +48,9 @@ public class EmpresaController {
         return (Empresa) this.repositorio.findByCnpj(cnpj);
     }
 
-    public void atualizarTabela(JTable grd) 
-    {
+    public void atualizarTabela(JTable grd) {
         Util.jTableShow(grd, new TMEmpresa(repositorio.findAll()), null);
-        
+
     }
 
     public void excluirEmpresa(Empresa empresa) {
@@ -58,5 +59,11 @@ public class EmpresaController {
         } else {
             throw new EmpresaException("Error - Empresa inexistente.");
         }
+    }
+
+    public void checkLogin(String cnpj, String senha) {
+        ValidateLoginEmpresa valid = new ValidateLoginEmpresa();
+        valid.validEntrada(cnpj, senha);
+        valid.validLogin(this.buscarEmpresa(cnpj), senha);
     }
 }
