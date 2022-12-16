@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.EmpresaController;
 import Controller.FiscalController;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -13,27 +14,27 @@ import javax.swing.text.MaskFormatter;
 
 /**
  *
- * @author Joao Pedro
+ * @author darlan
  */
-public class FrLoginFiscal extends javax.swing.JFrame {
+public class FrLoginEmpresa extends javax.swing.JFrame {
 
-    FiscalController fiscalController;
+    EmpresaController empresaController;
 
     /**
-     * Creates new form FrLoginFiscal
+     * Creates new form FrLoginEmpresa
      */
-    public FrLoginFiscal() {
+    public FrLoginEmpresa() {
         initComponents();
-        fiscalController = new FiscalController();
+        empresaController = new EmpresaController();
         this.adicionarMascaraNosCampos();
     }
 
     public void adicionarMascaraNosCampos() {
         try {
-            MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
-            maskCpf.install(edtCpf);
+            MaskFormatter maskCnpj = new MaskFormatter("##.###.###/####-##");
+            maskCnpj.install(edtCnpj);
         } catch (ParseException ex) {
-            Logger.getLogger(FrCadFiscal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrCadEmpresa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -48,7 +49,7 @@ public class FrLoginFiscal extends javax.swing.JFrame {
 
         btnLogar = new javax.swing.JButton();
         lblCpf = new javax.swing.JLabel();
-        edtCpf = new javax.swing.JFormattedTextField();
+        edtCnpj = new javax.swing.JFormattedTextField();
         lblSexo1 = new javax.swing.JLabel();
         edtSenha = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
@@ -62,14 +63,20 @@ public class FrLoginFiscal extends javax.swing.JFrame {
             }
         });
 
-        lblCpf.setText("CPF:");
+        lblCpf.setText("CNPJ");
+
+        edtCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtCnpjActionPerformed(evt);
+            }
+        });
 
         lblSexo1.setText("Senha:");
 
         edtSenha.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jLabel2.setText("Login Fiscal");
+        jLabel2.setText("Login Empresa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,32 +84,30 @@ public class FrLoginFiscal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSexo1)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(18, 18, 18)
+                            .addComponent(edtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblSexo1)
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCpf)
-                    .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSexo1)
@@ -117,16 +122,19 @@ public class FrLoginFiscal extends javax.swing.JFrame {
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
         try {
-            fiscalController.checkLogin(edtCpf.getText(), edtSenha.getText());
-            FrFiscal tela1 = new FrFiscal();
+            empresaController.checkLogin(edtCnpj.getText(), edtSenha.getText());
+            FrEmpresa tela1 = new FrEmpresa();
             tela1.setVisible(true);
             this.setVisible(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 
-
     }//GEN-LAST:event_btnLogarActionPerformed
+
+    private void edtCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtCnpjActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,27 +153,27 @@ public class FrLoginFiscal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrLoginFiscal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrLoginEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrLoginFiscal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrLoginEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrLoginFiscal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrLoginEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrLoginFiscal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrLoginEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrLoginFiscal().setVisible(true);
+                new FrLoginEmpresa().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;
-    private javax.swing.JFormattedTextField edtCpf;
+    private javax.swing.JFormattedTextField edtCnpj;
     private javax.swing.JPasswordField edtSenha;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblCpf;

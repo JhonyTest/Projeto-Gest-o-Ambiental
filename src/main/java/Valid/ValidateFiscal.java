@@ -110,20 +110,19 @@ public class ValidateFiscal {
         }
 
         ValidateFiscal validCPF = new ValidateFiscal();
-        if (!validCPF.validaCPF(cpf)) 
-        {
+        if (!validCPF.validaCPF(cpf)) {
             throw new FiscalException("Error - CPF invalido");
         }
 
         f.setCpf(cpf);
-        
+
         if (senha.isEmpty()) {
             throw new FiscalException("Error - Campo vazio: 'senha'.");
         }
         f.setSenha(senha);
 
         return f;
-        
+
     }
-     
+
 }

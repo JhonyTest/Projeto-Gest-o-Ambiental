@@ -290,35 +290,28 @@ public class FrCadEmpresa extends javax.swing.JFrame {
                 }
             }
         }
-    
+
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        try 
-        {
-            if (!cnpjEmpresaEditando.equals("-")) 
-            {
-               empresaController.atualizarEmpresa( edtNome.getText(), fEdtCnpj.getText(), edtPass.getText());
-            } 
-            else 
-            {
-                empresaController.cadastrarEmpresa(edtNome.getText(), fEdtCnpj.getText(),edtPass.getText());
+        try {
+            if (!cnpjEmpresaEditando.equals("-")) {
+                empresaController.atualizarEmpresa(edtNome.getText(), fEdtCnpj.getText(), edtPass.getText());
+            } else {
+                empresaController.cadastrarEmpresa(edtNome.getText(), fEdtCnpj.getText(), edtPass.getText());
             }
             cnpjEmpresaEditando = "-";
-            
+
             empresaController.atualizarTabela(grdEmpresa);
-            
+
             this.habilitarCampos(false);
             this.limparCampos();
-        } 
-        catch 
-            (EmpresaException e) 
-        {
+        } catch (EmpresaException e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
- 
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void grdEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grdEmpresaMouseClicked
@@ -360,27 +353,23 @@ public class FrCadEmpresa extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrCadEmpresa.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrCadEmpresa.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -388,7 +377,7 @@ public class FrCadEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-    
+
             }
         });
     }

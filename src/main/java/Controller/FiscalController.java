@@ -41,15 +41,14 @@ public class FiscalController {
         novoFiscal.setCpf(cpf);
 
         repositorio.update(novoFiscal);
-      
+
     }
 
     public Fiscal buscarFiscal(String cpf) {
         return (Fiscal) this.repositorio.findByCpf(cpf);
     }
 
-    public void atualizarTabela(JTable grd) 
-    {
+    public void atualizarTabela(JTable grd) {
         Util.jTableShow(grd, new TMFiscal(repositorio.findAll()), null);
     }
 
@@ -60,11 +59,10 @@ public class FiscalController {
             throw new FiscalException("Error - Fiscal inexistente.");
         }
     }
-      public void checkLogin(String cpf, String senha) {
-            ValidateLoginFiscal valid = new ValidateLoginFiscal();
-            valid.validEntrada(cpf, senha);
-            valid.validLogin(this.buscarFiscal(cpf), senha);
+
+    public void checkLogin(String cpf, String senha) {
+        ValidateLoginFiscal valid = new ValidateLoginFiscal();
+        valid.validEntrada(cpf, senha);
+        valid.validLogin(this.buscarFiscal(cpf), senha);
     }
 }
-   
-
