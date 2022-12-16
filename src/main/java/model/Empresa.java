@@ -48,14 +48,16 @@ public class Empresa {
         return saida;
     }
 
-    public int getId() {
+    public int getId() 
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id) 
+    {
         this.id = id;
     }
-
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -71,8 +73,9 @@ public class Empresa {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
-    public String getSenha() {
+    
+    public String getSenha() 
+    {
         return this.senha;
     }
 

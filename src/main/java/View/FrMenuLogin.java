@@ -79,16 +79,14 @@ public class FrMenuLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEmpresaActionPerformed
-        FrLoginEmpresa janela = new FrLoginEmpresa();
-        janela.show();
-        this.setVisible(false);
+       
     }//GEN-LAST:event_btnLoginEmpresaActionPerformed
 
     private void btnLoginFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginFiscalActionPerformed
         FrLoginFiscal janela = new FrLoginFiscal();
         janela.show();
         this.setVisible(false);
-
+        
     }//GEN-LAST:event_btnLoginFiscalActionPerformed
 
     /**

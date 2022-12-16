@@ -319,9 +319,9 @@ public class FrCadFiscal extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {
             if (idFiscalEditando > 0) {
-                fiscalController.atualizarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText(), edtPass.getText());
+                fiscalController.atualizarFiscal(edtNome.getText(), edtSexo.getText() ,edtIdade.getText(), fEdtCpf.getText(),edtPass.getText() );
             } else {
-                fiscalController.cadastrarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText(), edtPass.getText());
+                fiscalController.cadastrarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText(),edtPass.getText());
             }
             idFiscalEditando = -1;
             fiscalController.atualizarTabela(grdFiscal);
@@ -343,8 +343,8 @@ public class FrCadFiscal extends javax.swing.JFrame {
     }//GEN-LAST:event_grdFiscalMouseClicked
 
     private void edtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtPassActionPerformed
-        this.limparCampos();
-        this.habilitarCampos(true);
+         this.limparCampos();
+            this.habilitarCampos(true);
     }//GEN-LAST:event_edtPassActionPerformed
 
     /**

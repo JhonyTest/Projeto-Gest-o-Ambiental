@@ -17,7 +17,8 @@ import javax.swing.text.MaskFormatter;
  */
 public class FrLoginFiscal extends javax.swing.JFrame {
 
-    FiscalController fiscalController;
+    
+        FiscalController fiscalController;
 
     /**
      * Creates new form FrLoginFiscal
@@ -28,7 +29,8 @@ public class FrLoginFiscal extends javax.swing.JFrame {
         this.adicionarMascaraNosCampos();
     }
 
-    public void adicionarMascaraNosCampos() {
+    
+     public void adicionarMascaraNosCampos() {
         try {
             MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
             maskCpf.install(edtCpf);
@@ -36,7 +38,8 @@ public class FrLoginFiscal extends javax.swing.JFrame {
             Logger.getLogger(FrCadFiscal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,7 +119,7 @@ public class FrLoginFiscal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        try {
+          try {
             fiscalController.checkLogin(edtCpf.getText(), edtSenha.getText());
             FrFiscal tela1 = new FrFiscal();
             tela1.setVisible(true);
@@ -124,7 +127,7 @@ public class FrLoginFiscal extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-
+        
 
     }//GEN-LAST:event_btnLogarActionPerformed
 

@@ -23,7 +23,7 @@ class TMEmpresa extends AbstractTableModel {
     
 
     public TMEmpresa(List<Empresa> lstEmpresa) { 
-        lista = lstEmpresa;
+        this.lista = lstEmpresa;
       
     }
 

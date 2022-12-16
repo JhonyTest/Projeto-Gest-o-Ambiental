@@ -35,7 +35,7 @@ public class Fiscal {
     }
 
     public void copiar(Fiscal outro) {
-        this.id = outro.getId();
+       this.id = outro.getId();
         this.nome = outro.getNome();
         this.sexo = outro.getSexo();
         this.idade = outro.getIdade();
@@ -64,14 +64,18 @@ public class Fiscal {
         return this.nome;
     }
 
-    public int getId() {
+    public int getId() 
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id) 
+    {
         this.id = id;
     }
-
+    
+    
+    
     public int getIdade() {
         return this.idade;
     }
@@ -96,12 +100,12 @@ public class Fiscal {
         this.cpf = cpf;
     }
 
-    public String getSenha() {
+    public  String getSenha() {
         return senha;
     }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+    
+   public void setSenha(String senha){
+       this.senha = senha;
+   }
+    
 }

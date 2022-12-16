@@ -4,20 +4,23 @@
  */
 package DAO;
 
+import Exceptions.FiscalException;
 import Factory.Database;
-
+import Factory.Persistencia;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import model.Empresa;
 
 public class EmpresaDAO {
 
     EntityManager entityManager;
-    EntityManagerFactory factory;
+
     Query qry;
     String sql;
 
@@ -25,8 +28,7 @@ public class EmpresaDAO {
         entityManager = Database.getInstance().getEntityManager();
     }
 
-    public void save(Object obj) {
-        Empresa empresa = (Empresa) obj;
+    public void save(Empresa empresa) {
         this.entityManager.getTransaction().begin();
         if (empresa != null && empresa.getId() > 0) {
             this.entityManager.merge(empresa);
@@ -34,23 +36,12 @@ public class EmpresaDAO {
             this.entityManager.persist(empresa);
         }
         this.entityManager.getTransaction().commit();
+        //this.entityManager.getTransaction().rollback();
     }
 
-    public void delete(Object obj) {
-        Empresa empresa = (Empresa) obj;
+    public void delete(Empresa empresa) {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(empresa);
-        this.entityManager.getTransaction().commit();
-    }
-
-    public void update(Object obj) {
-        Empresa empresa = (Empresa) obj;
-        this.entityManager.getTransaction().begin();
-        if (empresa != null && empresa.getId() > 0) {
-            this.entityManager.merge(empresa);
-        } else {
-            this.entityManager.persist(empresa);
-        }
         this.entityManager.getTransaction().commit();
     }
 
@@ -60,7 +51,7 @@ public class EmpresaDAO {
                 + " FROM Empresa e "
                 + " WHERE id = :id ";
 
-        qry = this.entityManager.createQuery(sql);
+        qry = this.entityManager.createQuery(sql);  
         qry.setParameter("id", id);
 
         List lst = qry.getResultList();
@@ -97,5 +88,11 @@ public class EmpresaDAO {
         } else {
             return (Empresa) lst.get(0);
         }
+    }
+
+    public void update(Empresa empresa) {
+        this.entityManager.getTransaction().begin();
+        this.entityManager.merge(empresa);
+        this.entityManager.getTransaction().commit();
     }
 }
