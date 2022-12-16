@@ -5,7 +5,6 @@
 package Valid;
 
 import Exceptions.EmpresaException;
-import java.util.InputMismatchException;
 import model.Empresa;
 
 /**
@@ -58,16 +57,14 @@ public class ValidateEmpresa {
                 cnpj_calc += (dig == 10 || dig == 11) ? "0" : Integer.toString(
                         dig);
                 return cnpj.equals(cnpj_calc);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
-    
+
     public Empresa validacao(String nome, String cnpj, String senha) {
         Empresa e = new Empresa();
         if (nome.isEmpty()) {
@@ -78,20 +75,19 @@ public class ValidateEmpresa {
         if (cnpj.isEmpty()) {
             throw new EmpresaException("Error - Campo vazio: 'cnpj'.");
         }
-        
+
         if (senha.isEmpty()) {
             throw new EmpresaException("Error - Campo vazio: 'senha'.");
         }
         e.setSenha(senha);
 
         ValidateEmpresa validCNPJ = new ValidateEmpresa();
-        if (!validCNPJ.validaCNPJ(cnpj)) 
-        {
+        if (!validCNPJ.validaCNPJ(cnpj)) {
             throw new EmpresaException("Error - CNPJ invalido");
-        } 
+        }
 
         e.setCnpj(cnpj);
-  
+
         return e;
     }
 }

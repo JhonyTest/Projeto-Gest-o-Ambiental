@@ -4,7 +4,6 @@
  */
 package DAO;
 
-
 import Factory.Database;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import model.Fiscal;
 
-public class FiscalDAO  {
+public class FiscalDAO {
 
     EntityManager entityManager;
     EntityManagerFactory factory;
@@ -43,10 +42,10 @@ public class FiscalDAO  {
         this.entityManager.remove(fiscal);
         this.entityManager.getTransaction().commit();
     }
-    
-        public void update(Object obj) {
-            Fiscal fiscal = (Fiscal) obj;
-       this.entityManager.getTransaction().begin();
+
+    public void update(Object obj) {
+        Fiscal fiscal = (Fiscal) obj;
+        this.entityManager.getTransaction().begin();
         if (fiscal != null && fiscal.getId() > 0) {
             this.entityManager.merge(fiscal);
         } else {
@@ -54,9 +53,6 @@ public class FiscalDAO  {
         }
         this.entityManager.getTransaction().commit();
     }
-
-      
-    
 
     public Fiscal find(int id) {
         //Está é um HQL (Hibernate Query Language)
@@ -102,7 +98,5 @@ public class FiscalDAO  {
             return (Fiscal) lst.get(0);
         }
     }
-    
- 
 
 }

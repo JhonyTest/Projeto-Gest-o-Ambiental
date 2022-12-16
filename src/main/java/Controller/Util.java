@@ -12,16 +12,13 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author 16430637662
  */
-public class Util 
-{
-    public static void jTableShow(JTable grd, AbstractTableModel tableModel, TableCellRenderer render) 
-    {
+public class Util {
+
+    public static void jTableShow(JTable grd, AbstractTableModel tableModel, TableCellRenderer render) {
         grd.setModel(tableModel);
-        if (render != null) 
-        {
+        if (render != null) {
             grd.setDefaultRenderer(Object.class, render);
         }
         // grd.setAutoCreateRowSorter(true); // só funciona legal quando é todas as colunas são STRING
-    }       
+    }
 }
-
