@@ -88,6 +88,7 @@ public class FrCadEmpresa extends javax.swing.JFrame {
         edtPass = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,6 +161,13 @@ public class FrCadEmpresa extends javax.swing.JFrame {
 
         jLabel1.setText("Senha:");
 
+        jReturn.setText("Retornar");
+        jReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jReturn(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,6 +209,9 @@ public class FrCadEmpresa extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(126, 126, 126)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,8 +236,9 @@ public class FrCadEmpresa extends javax.swing.JFrame {
                     .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -338,6 +350,12 @@ public class FrCadEmpresa extends javax.swing.JFrame {
         this.limparCampos();
     }//GEN-LAST:event_edtPassActionPerformed
 
+    private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
+        FrMenuCadastro janela = new FrMenuCadastro();
+        janela.show();
+        this.setVisible(false);
+    }//GEN-LAST:event_jReturn
+
     /**
      * @param args the command line arguments
      */
@@ -394,6 +412,7 @@ public class FrCadEmpresa extends javax.swing.JFrame {
     private javax.swing.JTable grdEmpresa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jReturn;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCnpj;
     private javax.swing.JLabel lblNome;

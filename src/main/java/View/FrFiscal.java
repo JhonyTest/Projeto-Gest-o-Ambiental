@@ -28,6 +28,7 @@ public class FrFiscal extends javax.swing.JFrame {
 
         btnMulta = new javax.swing.JButton();
         btnProjects1 = new javax.swing.JButton();
+        jReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,10 +39,17 @@ public class FrFiscal extends javax.swing.JFrame {
             }
         });
 
-        btnProjects1.setText("Projetos");
+        btnProjects1.setText("Lista Projetos");
         btnProjects1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProjects1ActionPerformed(evt);
+            }
+        });
+
+        jReturn.setText("Retornar");
+        jReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jReturn(evt);
             }
         });
 
@@ -50,20 +58,24 @@ public class FrFiscal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(129, 129, 129)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProjects1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addComponent(btnProjects1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(btnMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
+                .addGap(49, 49, 49)
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -76,6 +88,11 @@ public class FrFiscal extends javax.swing.JFrame {
     private void btnProjects1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjects1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProjects1ActionPerformed
+
+    private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
+        FrMenuLogin janela = new FrMenuLogin();
+        janela.show();
+    }//GEN-LAST:event_jReturn
 
     /**
      * @param args the command line arguments
@@ -115,5 +132,6 @@ public class FrFiscal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMulta;
     private javax.swing.JButton btnProjects1;
+    private javax.swing.JButton jReturn;
     // End of variables declaration//GEN-END:variables
 }

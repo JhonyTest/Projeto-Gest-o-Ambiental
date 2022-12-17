@@ -29,6 +29,7 @@ public class FrMenuLogin extends javax.swing.JFrame {
         btnLoginFiscal = new javax.swing.JButton();
         btnLoginEmpresa = new javax.swing.JButton();
         lblMenuPrincipal = new javax.swing.JLabel();
+        jReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,17 +52,26 @@ public class FrMenuLogin extends javax.swing.JFrame {
         lblMenuPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenuPrincipal.setText("Menu Login");
 
+        jReturn.setText("Retornar");
+        jReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jReturn(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLoginFiscal, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                    .addComponent(btnLoginEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblMenuPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                .addComponent(lblMenuPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(btnLoginFiscal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLoginEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +82,8 @@ public class FrMenuLogin extends javax.swing.JFrame {
                 .addComponent(btnLoginFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLoginEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -90,6 +101,11 @@ public class FrMenuLogin extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_btnLoginFiscalActionPerformed
+
+    private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
+        FrMenuPrincipal janela = new FrMenuPrincipal();
+        janela.show();
+    }//GEN-LAST:event_jReturn
 
     /**
      * @param args the command line arguments
@@ -129,6 +145,7 @@ public class FrMenuLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoginEmpresa;
     private javax.swing.JButton btnLoginFiscal;
+    private javax.swing.JButton jReturn;
     private javax.swing.JLabel lblMenuPrincipal;
     // End of variables declaration//GEN-END:variables
 }

@@ -52,6 +52,7 @@ public class FrLoginFiscal extends javax.swing.JFrame {
         lblSexo1 = new javax.swing.JLabel();
         edtSenha = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
+        jReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +71,13 @@ public class FrLoginFiscal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel2.setText("Login Fiscal");
+
+        jReturn.setText("Retornar");
+        jReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jReturn(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,6 +101,9 @@ public class FrLoginFiscal extends javax.swing.JFrame {
                 .addContainerGap(108, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +120,8 @@ public class FrLoginFiscal extends javax.swing.JFrame {
                     .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGap(21, 21, 21)
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -127,6 +139,11 @@ public class FrLoginFiscal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnLogarActionPerformed
+
+    private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
+        FrMenuLogin janela = new FrMenuLogin();
+        janela.show();
+    }//GEN-LAST:event_jReturn
 
     /**
      * @param args the command line arguments
@@ -168,6 +185,7 @@ public class FrLoginFiscal extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField edtCpf;
     private javax.swing.JPasswordField edtSenha;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jReturn;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblSexo1;
     // End of variables declaration//GEN-END:variables

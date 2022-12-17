@@ -28,10 +28,11 @@ public class FrEmpresa extends javax.swing.JFrame {
 
         btnMulta = new javax.swing.JButton();
         btnProjects1 = new javax.swing.JButton();
+        jReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnMulta.setText("Matéria Prima");
+        btnMulta.setText("Multas");
         btnMulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMultaActionPerformed(evt);
@@ -45,6 +46,13 @@ public class FrEmpresa extends javax.swing.JFrame {
             }
         });
 
+        jReturn.setText("Retornar");
+        jReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jReturn(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,6 +63,9 @@ public class FrEmpresa extends javax.swing.JFrame {
                     .addComponent(btnProjects1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                     .addComponent(btnMulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(127, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +74,8 @@ public class FrEmpresa extends javax.swing.JFrame {
                 .addComponent(btnProjects1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(btnMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
+                .addGap(47, 47, 47)
+                .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -74,8 +86,14 @@ public class FrEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMultaActionPerformed
 
     private void btnProjects1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjects1ActionPerformed
-        // TODO add your handling code here:
+        FrCadProjetos janela = new FrCadProjetos();
+        janela.show();
     }//GEN-LAST:event_btnProjects1ActionPerformed
+
+    private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
+         FrMenuLogin janela = new FrMenuLogin();
+        janela.show();
+    }//GEN-LAST:event_jReturn
 
     /**
      * @param args the command line arguments
@@ -115,5 +133,6 @@ public class FrEmpresa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMulta;
     private javax.swing.JButton btnProjects1;
+    private javax.swing.JButton jReturn;
     // End of variables declaration//GEN-END:variables
 }
