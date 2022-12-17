@@ -26,6 +26,10 @@
           <Component id="lblMenuPrincipal" pref="400" max="32767" attributes="0"/>
           <Component id="btnCadAluno" max="32767" attributes="0"/>
           <Component id="btnCadEmpresa" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jReturn" min="-2" pref="108" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -36,7 +40,8 @@
               <Component id="btnCadAluno" min="-2" pref="70" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnCadEmpresa" min="-2" pref="70" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <Component id="jReturn" min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,6 +71,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadEmpresaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jReturn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Retornar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jReturn"/>
       </Events>
     </Component>
   </SubComponents>
