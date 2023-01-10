@@ -10,10 +10,9 @@ public interface IDao {
 
     public void save(Object obj);
 
-    public boolean delete(Object obj);
+    public void delete(Object obj);
 
-    public Object find(Object obj);
+    public Object find(int id);
 
-    public List<Object> findAll();
 
 }

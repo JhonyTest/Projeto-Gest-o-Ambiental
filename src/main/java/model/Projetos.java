@@ -4,6 +4,7 @@
  */
 package model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,28 +13,28 @@ import javax.persistence.Id;
  *
  * @author Joao Pedro
  */
+@Entity
 public class Projetos {
        @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private int id;
+    private long  id;
     private String nome;
     private String cidade;
     private String estado;
     private String situacao;
-    private int orcamento;
+    private String orcamento;
 
     public Projetos() {
         this.nome = "";
         this.situacao = "";
         this.cidade = "";
         this.estado = "";
-        this.orcamento = 0;
+        this.orcamento = "";
         this.id = -1;
        
     }
 
     public void copiar(Projetos outro) {
-        this.id = outro.getId();
         this.nome = outro.getNome();        
         this.cidade = outro.getCidade();
         this.situacao = outro.getSituacao();
@@ -49,6 +50,7 @@ public class Projetos {
                 + "Situacao:" + this.situacao + "\n"
                 + "Cidade:" + this.cidade + "\n"
                 + "Estado:" + this.estado + "\n"
+                + "Orçamento:" + this.orcamento + "\n"
                 + "----------------------------\n";
         return saida;
     }
@@ -62,10 +64,10 @@ public class Projetos {
     }
 
     public int getId() {
-        return id;
+        return (int) id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     
@@ -96,11 +98,11 @@ public class Projetos {
         this.estado = estado;
     }
 
-    public int getOrcamento() {
+    public String getOrcamento() {
         return orcamento;
     }
 
-    public void setOrcamento(int orcamento) {
+    public void setOrcamento(String orcamento) {
         this.orcamento = orcamento;
     }
 

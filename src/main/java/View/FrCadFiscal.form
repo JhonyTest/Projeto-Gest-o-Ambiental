@@ -210,7 +210,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="grdFiscalMouseClicked"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="FrProfessor_grdProfessor"/>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="FrFiscal_grdFiscal"/>
           </AuxValues>
         </Component>
       </SubComponents>
