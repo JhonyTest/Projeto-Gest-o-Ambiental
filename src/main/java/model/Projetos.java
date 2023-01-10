@@ -17,22 +17,28 @@ public class Projetos {
     @Id
     private int id;
     private String nome;
+    private String cidade;
     private String estado;
-    private int orçamento;
+    private String situacao;
+    private int orcamento;
 
     public Projetos() {
         this.nome = "";
+        this.situacao = "";
+        this.cidade = "";
         this.estado = "";
-        this.orçamento = 0;
+        this.orcamento = 0;
         this.id = -1;
        
     }
 
     public void copiar(Projetos outro) {
         this.id = outro.getId();
-        this.nome = outro.getNome();
+        this.nome = outro.getNome();        
+        this.cidade = outro.getCidade();
+        this.situacao = outro.getSituacao();
         this.estado = outro.getEstado();
-        this.orçamento = outro.getOrçamento();
+        this.orcamento = outro.getOrcamento();
     }
 
     public String imprimirParaString() {
@@ -40,8 +46,9 @@ public class Projetos {
         saida = "--------Dados do Fiscal-------\n"
                 + "id: " + this.id + "\n"
                 + "Nome:" + this.nome + "\n"
-                + "Sexo:" + this.estado + "\n"
-                + "Idade:" + this.orçamento + "\n"        
+                + "Situacao:" + this.situacao + "\n"
+                + "Cidade:" + this.cidade + "\n"
+                + "Estado:" + this.estado + "\n"
                 + "----------------------------\n";
         return saida;
     }
@@ -61,22 +68,45 @@ public class Projetos {
     public void setId(int id) {
         this.id = id;
     }
+    
+    
+    
+     public String getSituacao() {
+        return this.situacao;
+    }
 
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
+    
+    public String getCidade() {
+        return this.cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+   
     public String getEstado() {
         return this.estado;
     }
 
-    public void setEstado(int idade) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getOrçamento() {
-        return orçamento;
+    public int getOrcamento() {
+        return orcamento;
     }
 
-    public void setOrçamento(int orçamento) {
-        this.orçamento = orçamento;
+    public void setOrcamento(int orcamento) {
+        this.orcamento = orcamento;
     }
+
+    
+
+
 
   
 
