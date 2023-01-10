@@ -14,7 +14,7 @@ import model.Projetos;
 public class ValidateProjetos {
     
  
-     public Projetos validacao(String nome, String cidade ,String estado , String orcamento) {
+     public Projetos validacao(String nome, String cidade, String estado, String orcamento, String situacao) {
         Projetos p = new Projetos();
         if (nome.isEmpty()) {
             throw new ProjetosException("Error - Campo vazio: 'nome'.");
@@ -33,21 +33,11 @@ public class ValidateProjetos {
         p.setEstado(estado);
         
         
-        int orcamentoInt = 0;
-        if (orcamento.isEmpty()) {
-            throw new ProjetosException("Error - Campo vazio: 'idade'.");
-        }
-
-        if (!orcamento.matches("[0-9]*")) {
-            throw new ProjetosException("Error - Valor inválido no campo 'idade'.");
-        }
-
-        orcamentoInt = Integer.parseInt(orcamento);
-        p.setOrcamento(orcamentoInt);
-
         if (orcamento.isEmpty()) {
             throw new ProjetosException("Error - Campo vazio: 'orcamento'.");
         }
+        p.setOrcamento(orcamento);
+
         return p;
      }
 }

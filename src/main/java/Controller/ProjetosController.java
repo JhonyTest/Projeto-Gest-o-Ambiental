@@ -6,9 +6,12 @@ package Controller;
 
 import DAO.ProjetosDAO;
 import Exceptions.ProjetosException;
+import Valid.ValidateLoginEmpresa;
 import Valid.ValidateLoginFiscal;
 import Valid.ValidateProjetos;
+import java.util.List;
 import javax.swing.JTable;
+import model.Empresa;
 import model.Projetos;
 
 /**
@@ -23,42 +26,49 @@ public class ProjetosController {
         repositorio = new ProjetosDAO();
     }
 
-    public void cadastrarProjeto(String nome, String cidade, String estado, String orcamento, int id ) {
+    public void cadastrarProjetos(String nome, String cidade, String estado, String orcamento, String situacao) {
         ValidateProjetos valid = new ValidateProjetos();
-        Projetos novoProjetos = valid.validacao(nome, cidade, estado, orcamento);
+        Projetos novoProjetos = valid.validacao(nome, cidade, estado, orcamento,situacao);
 
-        if (repositorio.findById(id) == null) {
+        if (repositorio.findByNome(nome) == null) {
             repositorio.save(novoProjetos);
         } else {
-            throw new ProjetosException("Error - Já existe um fiscal com este 'ID'.");
+            throw new ProjetosException("Error - Já existe um projeto com este 'ID'.");
         }
     }
+    
+   
 
-    public void atualizarProjetos(String nome, String cidade, String estado, String orcamento, int id) {
+    public void atualizarProjetos(long idProjetos ,String nome, String cidade, String estado, String orcamento, String situacao) {
+        
         ValidateProjetos valid = new ValidateProjetos();
-        Projetos novoProjetos = valid.validacao(nome, cidade, estado, orcamento);
-        novoProjetos.setId(id);
-
+        Projetos novoProjetos;
+        novoProjetos = valid.validacao(nome, cidade, estado, orcamento, situacao);
+        novoProjetos.setId(idProjetos);
         repositorio.update(novoProjetos);
 
     }
 
-    public Projetos buscarProjetos(int id) {
-        return (Projetos) this.repositorio.findById(id);
+    public Projetos buscarProjetos(String nome) {
+        return (Projetos) this.repositorio.findByNome(nome);
     }
 
     public void atualizarTabela(JTable grd) {
-        Util.jTableShow(grd, new TMProjetos(repositorio.findAll()), null);
+         List<Projetos> lst = repositorio.findAll();
+
+        TMProjetos tmProjetos = new TMProjetos(lst);
+        grd.setModel(tmProjetos);
     }
 
     public void excluirProjetos(Projetos projetos) {
         if (projetos != null) {
             repositorio.delete(projetos);
         } else {
-            throw new ProjetosException("Error - Fiscal inexistente.");
+            throw new ProjetosException("Error - Projeto inexistente.");
         }
     }
-
+    
+   
   
 }
 

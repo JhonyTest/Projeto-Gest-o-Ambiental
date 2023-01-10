@@ -8,6 +8,7 @@ import Factory.Database;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.Projetos;
 
@@ -15,7 +16,7 @@ import model.Projetos;
  *
  * @author Joao Pedro
  */
-public class ProjetosDAO {
+public class ProjetosDAO implements IDao{
     
     EntityManager entityManager;
     EntityManagerFactory factory;
@@ -23,7 +24,8 @@ public class ProjetosDAO {
     String sql;
 
     public ProjetosDAO() {
-        entityManager = Database.getInstance().getEntityManager();
+        this.factory = Persistence.createEntityManagerFactory("gestao");
+        this.entityManager = factory.createEntityManager();
     }
 
     public void save(Object obj) {
@@ -37,11 +39,28 @@ public class ProjetosDAO {
         this.entityManager.getTransaction().commit();
     }
 
+    @Override
     public void delete(Object obj) {
         Projetos projetos = (Projetos) obj;
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(projetos);
         this.entityManager.getTransaction().commit();
+    }
+    
+    public Object find(int id) {
+        sql = " SELECT p "
+                + " FROM Projetos p "
+                + " WHERE id = :id ";
+
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("id", id);
+
+        List lst = qry.getResultList();
+        if (lst.isEmpty()) {
+            return null;
+        } else {
+            return (Projetos) lst.get(0);
+        }
     }
 
     public void update(Object obj) {
@@ -55,14 +74,14 @@ public class ProjetosDAO {
         this.entityManager.getTransaction().commit();
     }
 
-    public Projetos findById(int id) {
+    public Projetos findByNome(String nome) {
         //Está é um HQL (Hibernate Query Language)
         sql = " SELECT p "
                 + " FROM Projetos p "
-                + " WHERE id = :id ";
+                + " WHERE nome = :nome ";
 
         qry = this.entityManager.createQuery(sql);
-        qry.setParameter("id", id);
+        qry.setParameter("nome", nome);
 
         List lst = qry.getResultList();
         if (lst.isEmpty()) {
@@ -81,8 +100,6 @@ public class ProjetosDAO {
 
         List lst = qry.getResultList();
         return (List<Projetos>) lst;
+    
     }
-
 }
-
-

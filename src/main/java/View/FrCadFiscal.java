@@ -306,7 +306,7 @@ public class FrCadFiscal extends javax.swing.JFrame {
         Fiscal fiscalExcluido = (Fiscal) this.getObjetoSelecionadoNaGrid();
 
         if (fiscalExcluido == null)
-            JOptionPane.showMessageDialog(this, "Primeiro selecione um registro na tabela.");
+            JOptionPane.showMessageDialog(this, "Primeiro selecione um fiscal cadastrado na tabela.");
         else {
             int response = JOptionPane.showConfirmDialog(null,
                     "Deseja excluir o Fiscal  \n("
