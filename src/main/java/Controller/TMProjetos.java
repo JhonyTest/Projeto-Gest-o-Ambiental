@@ -17,8 +17,10 @@ public class TMProjetos extends AbstractTableModel {
 
     private final int COL_ID = 0;
     private final int COL_NOME = 1;
-    private final int COL_ESTADO = 2;
-    private final int COL_ORÇAMENTO = 3;
+    private final int COL_SITUACAO = 2;
+    private final int COL_CIDADE = 3;
+    private final int COL_ESTADO = 4;
+    private final int COL_ORÇAMENTO = 5;
 
     public TMProjetos(List<Projetos> lstProjetos) {
         lista = lstProjetos;
@@ -31,7 +33,7 @@ public class TMProjetos extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -42,6 +44,12 @@ public class TMProjetos extends AbstractTableModel {
 
             case COL_NOME:
                 return "Nome";
+                
+            case COL_SITUACAO:
+                return "Situacao";
+                
+            case COL_CIDADE:
+                return "Cidade";
 
             case COL_ESTADO:
                 return "Estado";
@@ -73,10 +81,14 @@ public class TMProjetos extends AbstractTableModel {
 
                 case COL_NOME:
                     return aux.getNome();
+                    case COL_SITUACAO:
+                    return aux.getSituacao();
+                    case COL_CIDADE:
+                    return aux.getCidade();
                 case COL_ESTADO:
                     return aux.getEstado();
                 case COL_ORÇAMENTO:
-                    return aux.getOrçamento();
+                    return aux.getOrcamento();
                 
                 default:
                     break;
