@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import model.Projetos;
 
@@ -29,21 +31,13 @@ public class FrCadProjetos extends javax.swing.JFrame {
         initComponents();
         this.habilitarCampos(false);
         this.limparCampos();
-        this.adicionarMascaraNosCampos();
+        
         
         projetosController.atualizarTabela(grdProjetos);
     }
     
     
-    public void adicionarMascaraNosCampos() {
-        try {
-            MaskFormatter maskOrcamento = new MaskFormatter("##.###,##");
-            maskOrcamento.install((JFormattedTextField) edtOrcamento);
-        } catch (ParseException ex) {
-            Logger.getLogger(FrCadProjetos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+    
     public void habilitarCampos(boolean flag) {
         edtNome.setEnabled(flag);
         edtCidade.setEnabled(flag);
@@ -61,11 +55,14 @@ public class FrCadProjetos extends javax.swing.JFrame {
 
     }
     
+    
+  
     public void preencherFormulario(Projetos p) {
         edtNome.setText(p.getNome());
-        edtCidade.setText(p.getCidade() + "");
-        edtEstado.setText(p.getEstado() + "");
+        edtCidade.setText(p.getCidade());
+        edtEstado.setText(p.getEstado());
         edtOrcamento.setText(p.getOrcamento()+"");
+        edtSituacao.setSelectedItem(p.getSituacao());
     }
     
      private Object getObjetoSelecionadoNaGrid() {
@@ -99,15 +96,15 @@ public class FrCadProjetos extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        edtOrcamento = new javax.swing.JFormattedTextField();
         lblSexo5 = new javax.swing.JLabel();
+        edtOrcamento = new javax.swing.JTextField();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        edtSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em Planejamento", "Em Execução", "Realizado" }));
+        edtSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em Planejamento", "Em Execução", "Encerrado" }));
         edtSituacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtSituacaoActionPerformed(evt);
@@ -133,7 +130,7 @@ public class FrCadProjetos extends javax.swing.JFrame {
 
         lblSexo4.setText("Estado");
 
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Salvar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -184,12 +181,6 @@ public class FrCadProjetos extends javax.swing.JFrame {
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
-            }
-        });
-
-        edtOrcamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtOrcamentoActionPerformed(evt);
             }
         });
 
@@ -269,7 +260,7 @@ public class FrCadProjetos extends javax.swing.JFrame {
                     .addComponent(lblSexo2)
                     .addComponent(lblSexo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(edtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtOrcamento, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edtSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,7 +284,7 @@ public class FrCadProjetos extends javax.swing.JFrame {
     }//GEN-LAST:event_jReturn
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-       try {
+        try {          
             if (idProjetosEditando > 0) {
                 projetosController.atualizarProjetos(idProjetosEditando,edtNome.getText(), edtCidade.getText(), edtEstado.getText(), edtOrcamento.getText(), edtSituacao.getSelectedItem().toString());
             } else {
@@ -367,10 +358,6 @@ public class FrCadProjetos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void edtOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtOrcamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtOrcamentoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -415,7 +402,7 @@ public class FrCadProjetos extends javax.swing.JFrame {
     private javax.swing.JTextField edtCidade;
     private javax.swing.JTextField edtEstado;
     private javax.swing.JTextField edtNome;
-    private javax.swing.JFormattedTextField edtOrcamento;
+    private javax.swing.JTextField edtOrcamento;
     private javax.swing.JComboBox<String> edtSituacao;
     private javax.swing.JTable grdProjetos;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;

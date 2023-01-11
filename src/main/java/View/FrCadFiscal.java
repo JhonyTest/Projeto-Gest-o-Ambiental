@@ -332,7 +332,7 @@ public class FrCadFiscal extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {
             if (idFiscalEditando > 0) {
-                fiscalController.atualizarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText(), edtPass.getText());
+                fiscalController.atualizarFiscal(idFiscalEditando,edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText(), edtPass.getText());
             } else {
                 fiscalController.cadastrarFiscal(edtNome.getText(), edtSexo.getText(), edtIdade.getText(), fEdtCpf.getText(), edtPass.getText());
             }

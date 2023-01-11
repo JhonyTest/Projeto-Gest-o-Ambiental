@@ -36,12 +36,12 @@ public class EmpresaController {
         }
     }
 
-    public void atualizarEmpresa(String nome, String cnpj, String senha) {
+    public void atualizarEmpresa(long idEmpresa,String nome, String cnpj, String senha) {
         ValidateEmpresa valid = new ValidateEmpresa();
         Empresa novoEmpresa = valid.validacao(nome, cnpj, senha);
-        novoEmpresa.setCnpj(cnpj);
+        novoEmpresa.setId((int) idEmpresa);
 
-        repositorio.update(novoEmpresa);
+        repositorio.save(novoEmpresa);
     }
 
     public Empresa buscarEmpresa(String cnpj) {
@@ -49,7 +49,10 @@ public class EmpresaController {
     }
 
     public void atualizarTabela(JTable grd) {
-        Util.jTableShow(grd, new TMEmpresa(repositorio.findAll()), null);
+        List<Empresa> lst = repositorio.findAll();
+
+        TMEmpresa tmEmpresa = new TMEmpresa(lst);
+        grd.setModel(tmEmpresa);
 
     }
 

@@ -120,7 +120,7 @@
                   <Component id="lblSexo2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblSexo3" alignment="3" max="32767" attributes="0"/>
                   <Component id="edtCidade" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                  <Component id="edtOrcamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="edtOrcamento" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -142,7 +142,7 @@
           <StringArray count="3">
             <StringItem index="0" value="Em Planejamento"/>
             <StringItem index="1" value="Em Execu&#xe7;&#xe3;o"/>
-            <StringItem index="2" value="Realizado"/>
+            <StringItem index="2" value="Encerrado"/>
           </StringArray>
         </Property>
       </Properties>
@@ -198,7 +198,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
@@ -261,15 +261,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="edtOrcamento">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edtOrcamentoActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblSexo5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="edtOrcamento">
     </Component>
   </SubComponents>
 </Form>

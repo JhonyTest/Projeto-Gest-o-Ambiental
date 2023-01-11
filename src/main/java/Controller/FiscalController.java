@@ -35,12 +35,12 @@ public class FiscalController {
         }
     }
 
-    public void atualizarFiscal(String nome, String sexo, String idade, String cpf, String pass) {
+    public void atualizarFiscal(long idFiscal,String nome, String sexo, String idade, String cpf, String pass) {
         ValidateFiscal valid = new ValidateFiscal();
         Fiscal novoFiscal = valid.validacao(nome, sexo, idade, cpf, pass);
-        novoFiscal.setCpf(cpf);
+        novoFiscal.setId((int) idFiscal);
 
-        repositorio.update(novoFiscal);
+        repositorio.save(novoFiscal);
 
     }
 
@@ -49,7 +49,10 @@ public class FiscalController {
     }
 
     public void atualizarTabela(JTable grd) {
-        Util.jTableShow(grd, new TMFiscal(repositorio.findAll()), null);
+        List<Fiscal> lst = repositorio.findAll();
+
+        TMFiscal tmFiscal = new TMFiscal(lst);
+        grd.setModel(tmFiscal);
     }
 
     public void excluirFiscal(Fiscal fiscal) {
