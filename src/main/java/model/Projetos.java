@@ -22,14 +22,17 @@ public class Projetos {
     private String cidade;
     private String estado;
     private String situacao;
-    private String orcamento;
+    private int orcamento;
 
     public Projetos() {
+        
+        
+        
         this.nome = "";
         this.situacao = "";
         this.cidade = "";
         this.estado = "";
-        this.orcamento = "";
+        this.orcamento = 0;
         this.id = -1;
        
     }
@@ -39,7 +42,7 @@ public class Projetos {
         this.cidade = outro.getCidade();
         this.situacao = outro.getSituacao();
         this.estado = outro.getEstado();
-        this.orcamento = outro.getOrcamento();
+        this.orcamento =  (int) outro.getOrcamento();
     }
 
     public String imprimirParaString() {
@@ -98,11 +101,11 @@ public class Projetos {
         this.estado = estado;
     }
 
-    public String getOrcamento() {
-        return orcamento;
+    public int getOrcamento() {
+        return  orcamento;
     }
 
-    public void setOrcamento(String orcamento) {
+    public void setOrcamento(int orcamento) {
         this.orcamento = orcamento;
     }
 

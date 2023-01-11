@@ -28,12 +28,11 @@ public class ProjetosController {
 
     public void cadastrarProjetos(String nome, String cidade, String estado, String orcamento, String situacao) {
         ValidateProjetos valid = new ValidateProjetos();
-        Projetos novoProjetos = valid.validacao(nome, cidade, estado, orcamento,situacao);
-
+        Projetos novoProjetos = valid.validacao(nome, cidade, estado, orcamento, situacao);
         if (repositorio.findByNome(nome) == null) {
             repositorio.save(novoProjetos);
         } else {
-            throw new ProjetosException("Error - Já existe um projeto com este 'ID'.");
+            throw new ProjetosException("Error - Já existe um projeto com este 'nome'.");
         }
     }
     
@@ -41,11 +40,11 @@ public class ProjetosController {
 
     public void atualizarProjetos(long idProjetos ,String nome, String cidade, String estado, String orcamento, String situacao) {
         
+   
         ValidateProjetos valid = new ValidateProjetos();
-        Projetos novoProjetos;
-        novoProjetos = valid.validacao(nome, cidade, estado, orcamento, situacao);
+        Projetos novoProjetos = valid.validacao(nome, cidade, estado, orcamento, situacao);
         novoProjetos.setId(idProjetos);
-        repositorio.update(novoProjetos);
+        repositorio.save(novoProjetos);
 
     }
 

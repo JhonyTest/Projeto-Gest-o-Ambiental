@@ -24,11 +24,10 @@ import model.Empresa;
 public class FrCadEmpresa extends javax.swing.JFrame {
 
     EmpresaController empresaController;
-    String cnpjEmpresaEditando;
+    long idEmpresaEditando;
 
     public FrCadEmpresa() {
         empresaController = new EmpresaController();
-        cnpjEmpresaEditando = "-";
 
         initComponents();
         this.adicionarMascaraNosCampos();
@@ -308,12 +307,12 @@ public class FrCadEmpresa extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {
-            if (!cnpjEmpresaEditando.equals("-")) {
-                empresaController.atualizarEmpresa(edtNome.getText(), fEdtCnpj.getText(), edtPass.getText());
+            if (idEmpresaEditando>0) {
+                empresaController.atualizarEmpresa(idEmpresaEditando,edtNome.getText(), fEdtCnpj.getText(), edtPass.getText());
             } else {
                 empresaController.cadastrarEmpresa(edtNome.getText(), fEdtCnpj.getText(), edtPass.getText());
             }
-            cnpjEmpresaEditando = "-";
+            idEmpresaEditando = -1;
 
             empresaController.atualizarTabela(grdEmpresa);
 
@@ -341,7 +340,7 @@ public class FrCadEmpresa extends javax.swing.JFrame {
             this.limparCampos();
             this.habilitarCampos(true);
             this.preencherFormulario(empresaEditando);
-            this.cnpjEmpresaEditando = empresaEditando.getCnpj();
+            this.idEmpresaEditando = empresaEditando.getId();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
