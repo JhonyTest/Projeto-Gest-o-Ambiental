@@ -86,7 +86,8 @@ public class FrFiscal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMultaActionPerformed
 
     private void btnProjects1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjects1ActionPerformed
-        // TODO add your handling code here:
+        FrProjetos janela = new FrProjetos();
+        janela.show();
     }//GEN-LAST:event_btnProjects1ActionPerformed
 
     private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
