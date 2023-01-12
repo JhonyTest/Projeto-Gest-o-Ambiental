@@ -82,7 +82,8 @@ public class FrFiscal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultaActionPerformed
-
+        FrCadMultas janela = new FrCadMultas();
+        janela.show();
     }//GEN-LAST:event_btnMultaActionPerformed
 
     private void btnProjects1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjects1ActionPerformed

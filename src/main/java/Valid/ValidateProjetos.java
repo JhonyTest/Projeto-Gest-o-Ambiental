@@ -48,8 +48,6 @@ public class ValidateProjetos{
         orcamentoInt = Integer.parseInt(orcamento);
         p.setOrcamento(orcamentoInt);
 
-     
-
         return p;
 
     }

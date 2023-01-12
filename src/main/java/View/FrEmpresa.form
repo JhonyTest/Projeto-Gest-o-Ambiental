@@ -53,7 +53,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnMulta">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Multas"/>
+        <Property name="text" type="java.lang.String" value="Lista Multas"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMultaActionPerformed"/>

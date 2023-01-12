@@ -36,7 +36,7 @@ public class EmpresaController {
         }
     }
 
-    public void atualizarEmpresa(long idEmpresa,String nome, String cnpj, String senha) {
+    public void atualizarEmpresa(long idEmpresa, String nome, String cnpj, String senha) {
         ValidateEmpresa valid = new ValidateEmpresa();
         Empresa novoEmpresa = valid.validacao(nome, cnpj, senha);
         novoEmpresa.setId((int) idEmpresa);

@@ -114,7 +114,7 @@ public class FrProjetos extends javax.swing.JFrame {
     }//GEN-LAST:event_grdProjetosMouseClicked
 
     private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
-        FrFiscal janela = new FrFiscal();
+        FrEmpresa janela = new FrEmpresa();
         janela.show();
     }//GEN-LAST:event_jReturn
 
