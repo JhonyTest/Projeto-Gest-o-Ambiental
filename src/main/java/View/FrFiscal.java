@@ -29,6 +29,7 @@ public class FrFiscal extends javax.swing.JFrame {
         btnMulta = new javax.swing.JButton();
         btnProjects1 = new javax.swing.JButton();
         jReturn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,42 +40,52 @@ public class FrFiscal extends javax.swing.JFrame {
             }
         });
 
-        btnProjects1.setText("Lista Projetos");
+        btnProjects1.setText("Lista de Projetos");
         btnProjects1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProjects1ActionPerformed(evt);
             }
         });
 
-        jReturn.setText("Retornar");
+        jReturn.setText("Sair");
         jReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jReturn(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel2.setText("Fiscalização");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProjects1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(145, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProjects1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnProjects1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(32, 32, 32)
                 .addComponent(jReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -84,16 +95,22 @@ public class FrFiscal extends javax.swing.JFrame {
     private void btnMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultaActionPerformed
         FrCadMultas janela = new FrCadMultas();
         janela.show();
+        this.setVisible(false);
+
     }//GEN-LAST:event_btnMultaActionPerformed
 
     private void btnProjects1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjects1ActionPerformed
         FrProjetos janela = new FrProjetos();
         janela.show();
+        this.setVisible(false);
+
     }//GEN-LAST:event_btnProjects1ActionPerformed
 
     private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
-        FrMenuLogin janela = new FrMenuLogin();
+        FrLoginFiscal janela = new FrLoginFiscal();
         janela.show();
+        this.setVisible(false);
+
     }//GEN-LAST:event_jReturn
 
     /**
@@ -134,6 +151,7 @@ public class FrFiscal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMulta;
     private javax.swing.JButton btnProjects1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jReturn;
     // End of variables declaration//GEN-END:variables
 }

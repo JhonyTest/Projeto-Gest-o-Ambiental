@@ -350,7 +350,7 @@ public class FrCadEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_edtPassActionPerformed
 
     private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
-        FrMenuCadastro janela = new FrMenuCadastro();
+        FrLoginEmpresa janela = new FrLoginEmpresa();
         janela.show();
         this.setVisible(false);
     }//GEN-LAST:event_jReturn

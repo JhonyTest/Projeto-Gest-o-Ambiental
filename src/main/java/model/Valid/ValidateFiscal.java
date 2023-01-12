@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Valid;
+
+package model.Valid;
 
 import model.Fiscal;
 import Exceptions.FiscalException;
 
-/**
- *
- * @author Joao Pedro
- */
+
 public class ValidateFiscal {
 
     public boolean validaCPF(String cpf) {

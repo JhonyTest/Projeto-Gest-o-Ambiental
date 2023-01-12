@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controller;
 
 import java.util.List;
@@ -12,13 +9,15 @@ public class TMMultas extends AbstractTableModel {
 
     private List<Multas> lista;
 
-    private final int COL_ID = 0;
-    private final int COL_CNPJ = 1;
-    private final int COL_DOCUMENTO = 2;
-    private final int COL_VENCIMENTO = 3;
-    private final int COL_MULTA = 4;
-    private final int COL_JUROS = 5;
-    private final int COL_TOTAL = 6;
+ 
+    private final int COL_CNPJ = 0;
+    private final int COL_DOCUMENTO = 1;
+    private final int COL_VENCIMENTO = 2;
+    private final int COL_MULTA = 3;
+    private final int COL_JUROS = 4;
+    private final int COL_TOTAL = 5;
+        private final int COL_ID = 6;
+
 
     public TMMultas(List<Multas> lstMultas) {
         lista = lstMultas;
@@ -31,14 +30,13 @@ public class TMMultas extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 6;
     }
 
     @Override
     public String getColumnName(int column) {
         switch (column) {
-            case COL_ID:
-                return "ID";
+           
             case COL_CNPJ:
                 return "Cnpj";
 
@@ -77,8 +75,7 @@ public class TMMultas extends AbstractTableModel {
                 case -1:
                     return aux;
 
-                case COL_ID:
-                return aux.getId();
+               
                 
                 case COL_CNPJ:
                     return aux.getCnpj();
