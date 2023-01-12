@@ -32,7 +32,7 @@ public class FrEmpresa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnMulta.setText("Multas");
+        btnMulta.setText("Lista Multas");
         btnMulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMultaActionPerformed(evt);
@@ -82,7 +82,8 @@ public class FrEmpresa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultaActionPerformed
-
+        FrMultas janela = new FrMultas();
+        janela.show();
     }//GEN-LAST:event_btnMultaActionPerformed
 
     private void btnProjects1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjects1ActionPerformed
@@ -91,7 +92,7 @@ public class FrEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProjects1ActionPerformed
 
     private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
-         FrMenuLogin janela = new FrMenuLogin();
+        FrMenuLogin janela = new FrMenuLogin();
         janela.show();
     }//GEN-LAST:event_jReturn
 
