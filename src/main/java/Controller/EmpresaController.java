@@ -1,22 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controller;
 
-import DAO.EmpresaDAO;
+import model.DAO.EmpresaDAO;
 import Exceptions.EmpresaException;
-import Valid.ValidateEmpresa;
-import Valid.ValidateLoginEmpresa;
+import model.Valid.ValidateEmpresa;
+import model.Valid.ValidateLoginEmpresa;
 
 import java.util.List;
 import javax.swing.JTable;
 import model.Empresa;
 
-/**
- *
- * @author Joao Pedro
- */
+
 public class EmpresaController {
 
     private EmpresaDAO repositorio;

@@ -1,23 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controller;
 
-import DAO.ProjetosDAO;
+import model.DAO.ProjetosDAO;
 import Exceptions.ProjetosException;
-import Valid.ValidateLoginEmpresa;
-import Valid.ValidateLoginFiscal;
-import Valid.ValidateProjetos;
+import model.Valid.ValidateLoginEmpresa;
+import model.Valid.ValidateLoginFiscal;
+import model.Valid.ValidateProjetos;
 import java.util.List;
 import javax.swing.JTable;
 import model.Empresa;
 import model.Projetos;
 
-/**
- *
- * @author Joao Pedro
- */
 public class ProjetosController {
     
    private ProjetosDAO repositorio;

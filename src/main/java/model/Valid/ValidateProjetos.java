@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Valid;
+
+package model.Valid;
 
 import Exceptions.ProjetosException;
 import model.Projetos;
 
-/**
- *
- * @author Joao Pedro
- */
 
 public class ValidateProjetos{    
 

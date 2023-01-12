@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package DAO;
+
+package model.DAO;
 
 import Factory.Database;
 
@@ -12,52 +9,52 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import model.Fiscal;
+import model.Empresa;
 
-public class FiscalDAO {
+public class EmpresaDAO {
 
     EntityManager entityManager;
     EntityManagerFactory factory;
     Query qry;
     String sql;
 
-    public FiscalDAO() {
+    public EmpresaDAO() {
         entityManager = Database.getInstance().getEntityManager();
     }
 
     public void save(Object obj) {
-        Fiscal fiscal = (Fiscal) obj;
+        Empresa empresa = (Empresa) obj;
         this.entityManager.getTransaction().begin();
-        if (fiscal != null && fiscal.getId() > 0) {
-            this.entityManager.merge(fiscal);
+        if (empresa != null && empresa.getId() > 0) {
+            this.entityManager.merge(empresa);
         } else {
-            this.entityManager.persist(fiscal);
+            this.entityManager.persist(empresa);
         }
         this.entityManager.getTransaction().commit();
     }
 
     public void delete(Object obj) {
-        Fiscal fiscal = (Fiscal) obj;
+        Empresa empresa = (Empresa) obj;
         this.entityManager.getTransaction().begin();
-        this.entityManager.remove(fiscal);
+        this.entityManager.remove(empresa);
         this.entityManager.getTransaction().commit();
     }
 
     public void update(Object obj) {
-        Fiscal fiscal = (Fiscal) obj;
+        Empresa empresa = (Empresa) obj;
         this.entityManager.getTransaction().begin();
-        if (fiscal != null && fiscal.getId() > 0) {
-            this.entityManager.merge(fiscal);
+        if (empresa != null && empresa.getId() > 0) {
+            this.entityManager.merge(empresa);
         } else {
-            this.entityManager.persist(fiscal);
+            this.entityManager.persist(empresa);
         }
         this.entityManager.getTransaction().commit();
     }
 
-    public Fiscal find(int id) {
+    public Empresa find(int id) {
         //Está é um HQL (Hibernate Query Language)
-        sql = " SELECT f "
-                + " FROM Fiscal f "
+        sql = " SELECT e "
+                + " FROM Empresa e "
                 + " WHERE id = :id ";
 
         qry = this.entityManager.createQuery(sql);
@@ -67,36 +64,35 @@ public class FiscalDAO {
         if (lst.isEmpty()) {
             return null;
         } else {
-            return (Fiscal) lst.get(0);
+            return (Empresa) lst.get(0);
         }
     }
 
-    public List<Fiscal> findAll() {
+    public List<Empresa> findAll() {
         //Está é um HQL (Hibernate Query Language)
-        sql = " SELECT f "
-                + " FROM Fiscal f ";
+        sql = " SELECT e "
+                + " FROM Empresa e ";
 
         qry = this.entityManager.createQuery(sql);
 
         List lst = qry.getResultList();
-        return (List<Fiscal>) lst;
+        return (List<Empresa>) lst;
     }
 
-    public Fiscal findByCpf(String cpf) {
+    public Empresa findByCnpj(String cnpj) {
         //Está é um HQL (Hibernate Query Language)
-        sql = " SELECT f "
-                + " FROM Fiscal f "
-                + " WHERE cpf like :cpf ";
+        sql = " SELECT e "
+                + " FROM Empresa e "
+                + " WHERE cnpj like :cnpj ";
         qry = this.entityManager.createQuery(sql);
-        qry.setParameter("cpf", cpf);
+        qry.setParameter("cnpj", cnpj);
 
         List lst = qry.getResultList();
 
         if (lst.isEmpty()) {
             return null;
         } else {
-            return (Fiscal) lst.get(0);
+            return (Empresa) lst.get(0);
         }
     }
-
 }

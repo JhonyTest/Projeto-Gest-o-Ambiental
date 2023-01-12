@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Valid;
+
+package model.Valid;
 
 import Exceptions.MultaException;
 import model.Multas;
 
-/**
- *
- * @author Joao Pedro
- */
+
 public class ValidateMultas {
 
     public Multas validacao(String cnpj, String documento, String multa, String vencimento, String juros, String total) {

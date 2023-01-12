@@ -1,22 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controller;
 
-import DAO.MultasDAO;
+import model.DAO.MultasDAO;
 import Exceptions.MultaException;
-import Valid.ValidateMultas;
+import model.Valid.ValidateMultas;
 import java.util.List;
 import javax.swing.JTable;
 import model.Multas;
 import model.Empresa;
 import model.Projetos;
 
-/**
- *
- * @author Joao Pedro
- */
+
 public class MultasController {
 
     private MultasDAO repositorio;

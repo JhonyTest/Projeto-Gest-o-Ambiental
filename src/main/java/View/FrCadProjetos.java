@@ -281,6 +281,7 @@ public class FrCadProjetos extends javax.swing.JFrame {
     private void jReturn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReturn
         FrEmpresa janela = new FrEmpresa();
         janela.show();
+        setVisible(false);
     }//GEN-LAST:event_jReturn
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed

@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package DAO;
+
+package model.DAO;
 
 import Factory.Database;
 import java.util.List;
@@ -12,10 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.Projetos;
 
-/**
- *
- * @author Joao Pedro
- */
+
 public class ProjetosDAO implements IDao{
     
     EntityManager entityManager;

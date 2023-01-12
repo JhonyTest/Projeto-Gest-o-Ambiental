@@ -1,25 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controller;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Empresa;
 
-/**
- *
- * @author Joao Pedro
- */
+
 class TMEmpresa extends AbstractTableModel {
 
     private List<Empresa> lista;
 
-    private final int COL_ID = 0;
-    private final int COL_NOME = 1;
-    private final int COL_CNPJ = 2;
-    private final int COL_SENHA = 3;
+   
+    private final int COL_NOME = 0;
+    private final int COL_CNPJ = 1;
+    private final int COL_SENHA = 2;
+        private final int COL_ID = 3;
+
     
 
     public TMEmpresa(List<Empresa> lstEmpresa) { 
@@ -35,14 +31,13 @@ class TMEmpresa extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
 
     @Override
     public String getColumnName(int column) {
         switch (column) {
-            case COL_ID:
-                return "ID";
+            
             
             case COL_NOME:
                 return "Nome";
@@ -71,9 +66,7 @@ class TMEmpresa extends AbstractTableModel {
             switch (columnIndex) {
                 case -1:
                     return aux;
-                
-                case COL_ID:
-                    return aux.getId();
+               
                 
                 case COL_NOME:
                     return aux.getNome();
