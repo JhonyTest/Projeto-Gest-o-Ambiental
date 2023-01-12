@@ -37,6 +37,7 @@ public class FrCadMultas extends javax.swing.JFrame {
         try {
             MaskFormatter maskCnpj = new MaskFormatter("##.###.###/####-##");
             maskCnpj.install((JFormattedTextField) fEdtCnpj);
+            
         } catch (ParseException ex) {
             Logger.getLogger(FrCadMultas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,7 +96,6 @@ public class FrCadMultas extends javax.swing.JFrame {
         lblSexo3 = new javax.swing.JLabel();
         lblSexo1 = new javax.swing.JLabel();
         lblSexo4 = new javax.swing.JLabel();
-        edtVencimento = new javax.swing.JTextField();
         lblSexo5 = new javax.swing.JLabel();
         edtMultas = new javax.swing.JTextField();
         lblSexo2 = new javax.swing.JLabel();
@@ -110,6 +110,7 @@ public class FrCadMultas extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         fEdtCnpj = new javax.swing.JFormattedTextField();
+        edtVencimento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,12 +139,6 @@ public class FrCadMultas extends javax.swing.JFrame {
         lblSexo1.setText("CNPJ:");
 
         lblSexo4.setText("Vencimento:");
-
-        edtVencimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtVencimentoActionPerformed(evt);
-            }
-        });
 
         lblSexo5.setText("Juros:");
 
@@ -220,6 +215,18 @@ public class FrCadMultas extends javax.swing.JFrame {
             }
         });
 
+        fEdtCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fEdtCnpjActionPerformed(evt);
+            }
+        });
+
+        edtVencimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtVencimentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,14 +251,14 @@ public class FrCadMultas extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(7, 7, 7)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblSexo4)
                                             .addComponent(lblSexo3)
-                                            .addComponent(lblSexo1))
+                                            .addComponent(lblSexo1)
+                                            .addComponent(lblSexo4))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(edtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(edtVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(fEdtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(fEdtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(edtVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -293,12 +300,12 @@ public class FrCadMultas extends javax.swing.JFrame {
                             .addComponent(lblSexo1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edtVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSexo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(edtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblSexo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edtVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSexo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -330,9 +337,9 @@ public class FrCadMultas extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         try {
             if (idMultasEditando > 0) {
-                multasController.atualizarMultas(idMultasEditando, fEdtCnpj.getText(), edtDocumento.getText(), edtVencimento.getText(), edtMultas.getText(), edtJuros.getText(), edtTotal.getText());
+                multasController.atualizarMultas(idMultasEditando, fEdtCnpj.getText(), edtDocumento.getText(), edtMultas.getText(), edtVencimento.getText(), edtJuros.getText(), edtTotal.getText());
             } else {
-                multasController.cadastrarMultas(fEdtCnpj.getText(), edtDocumento.getText(), edtVencimento.getText(), edtMultas.getText(), edtJuros.getText(), edtTotal.getText());
+                multasController.cadastrarMultas(fEdtCnpj.getText(), edtDocumento.getText(), edtMultas.getText(), edtVencimento.getText(), edtJuros.getText(), edtTotal.getText());
             }
             this.idMultasEditando = -1;
             multasController.atualizarTabela(grdMultas);
@@ -348,10 +355,6 @@ public class FrCadMultas extends javax.swing.JFrame {
     private void edtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtDocumentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtDocumentoActionPerformed
-
-    private void edtVencimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtVencimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtVencimentoActionPerformed
 
     private void edtMultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtMultasActionPerformed
         // TODO add your handling code here:
@@ -420,6 +423,14 @@ public class FrCadMultas extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void fEdtCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fEdtCnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fEdtCnpjActionPerformed
+
+    private void edtVencimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtVencimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtVencimentoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -44,15 +44,15 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblSexo4" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblSexo3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblSexo1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblSexo4" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="edtDocumento" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
-                                          <Component id="edtVencimento" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
                                           <Component id="fEdtCnpj" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
+                                          <Component id="edtVencimento" min="-2" pref="187" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -112,13 +112,13 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="edtVencimento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSexo4" alignment="3" max="32767" attributes="0"/>
+                          <Component id="edtDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSexo3" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="edtDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSexo3" alignment="3" max="32767" attributes="0"/>
+                          <Component id="edtVencimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSexo4" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
@@ -184,11 +184,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Vencimento:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="edtVencimento">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edtVencimentoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSexo5">
       <Properties>
@@ -287,6 +282,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="fEdtCnpj">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fEdtCnpjActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="edtVencimento">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edtVencimentoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

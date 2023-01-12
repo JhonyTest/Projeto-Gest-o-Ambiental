@@ -33,7 +33,7 @@ public class ValidateMultas {
         if (multa.isEmpty()) {
             throw new MultaException("Error - Campo vazio: 'multa'.");
         }
-        multaInt = Integer.parseInt(total);
+        multaInt = Integer.parseInt(multa);
         m.setMulta(multaInt);
 
         if (vencimento.isEmpty()) {
